@@ -1,0 +1,127 @@
+// https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html
+
+@startuml
+header @nghinhut
+footer Page %page% of %lastpage%
+
+title [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.4{} User-Managed Access (UMA) 2.0 Grant for OAuth 2.0 Authorization]]
+
+actor "requesting party" as rp
+participant "client " as client
+participant "authorization server    " as as
+participant "resource server    " as rs
+actor "resource owner" as ro
+
+'rp -> asdf
+autonumber
+client ->> rs : [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.1{} 1. Client Requests Resource With No Token]]
+activate rs
+note left
+    GET /users/alice/album/photo.jpg HTTP/1.1
+    Host: photoz.example.com
+    . . .
+end note
+
+== [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.2{} 2 Resource Server Responds to Client's Tokenless Access Attempt]]\t ==
+
+rs -> rs : createPermissionTicket()
+activate rs
+
+rs -> as : obtain a permission ticket
+note right
+    POST /<permission_endpoint> HTTP/1.1
+    Host: as.example.com
+    Authorization: Basic jwfLG53^sad$#f
+    . . .
+    grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Auma-ticket
+    &ticket=016f84e8-f9b9-11e0-bd6f-0021cc6004de
+end note
+
+activate as
+
+as -->> rs : response
+deactivate rs
+deactivate as
+alt [[ https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.2.1{} 2.1 Resource Server Response to Client on Permission Request Success ]
+    client <<-- rs : 401 response
+
+    note right
+        HTTP/1.1 401 Unauthorized
+        WWW-Authenticate: UMA realm="example",
+          as_uri="https://as.example.com",
+          ticket="016f84e8-f9b9-11e0-bd6f-0021cc6004de"
+        . . .
+    end note
+  else  [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.2.2 2.2 Resource Server Response to Client on Permission Request Failure]
+    client <<-- rs : 403 response
+    note right
+        HTTP/1.1 403 Forbidden
+        Warning: 199 - "UMA Authorization Server Unreachable"
+        . . .
+    end note
+end
+deactivate rs
+== [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.3{} 3 Client Seeks RPT on Requesting Party's Behalf]]\t ==
+client ->> as : [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.3.1 3.1 Client Request to Authorization Server for RPT]]\t
+activate as
+note left
+    POST /token HTTP/1.1
+    Host: as.example.com
+    Authorization: Basic jwfLG53^sad$#f
+    ...
+    grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Auma-ticket
+    &ticket=016f84e8-f9b9-11e0-bd6f-0021cc6004de
+end note
+
+as -> as : [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.3.4 3.4 Authorization Assessment and Results Determination]]
+activate as
+deactivate as
+
+client <<-- as : [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.3.5 3.5 Authorization Server Response to Client on Authorization Success]]\t
+note right
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    ...
+
+    {
+       "access_token":"sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv",
+       "token_type":"Bearer"
+    }
+
+    <i>with a PCT in the response
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    ...
+
+    {
+       "access_token":"sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv",
+       "token_type":"Bearer",
+       "pct":"c2F2ZWRjb25zZW50"
+    }
+end note
+
+opt [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.3.5.1 3.5.1 Authorization Server Upgrades RPT]
+client <<-- as : response 200 with upgraded RPT
+note right
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    ...
+
+    {
+       "access_token":"sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv",
+       "token_type":"Bearer",
+       "upgraded":true
+    }
+end note
+end
+deactivate as
+
+== 4 Client Requests Resource Accompanied by RPT\t ==
+client ->> rs : [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.4 4 Client Requests Resource Accompanied by RPT]]
+activate rs
+
+client <<-- rs : resources
+deactivate rs
+
+
+@enduml
