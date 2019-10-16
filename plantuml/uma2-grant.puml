@@ -26,19 +26,45 @@ end note
 rs -> rs : createPermissionTicket()
 activate rs
 
-rs -> as : obtain a permission ticket
+rs -> as : Creating Permission Ticket
 note right
     POST /<permission_endpoint> HTTP/1.1
     Host: as.example.com
-    Authorization: Basic jwfLG53^sad$#f
+    Authorization: Bearer $PAT
     . . .
-    grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Auma-ticket
-    &ticket=016f84e8-f9b9-11e0-bd6f-0021cc6004de
+    [
+      {
+        "resource_id": "{resource_id}",
+        "resource_scopes": [
+          "view"
+        ]
+      }
+    ]
+    ...
+    <i>with claims
+
+    POST /<permission_endpoint> HTTP/1.1
+        Host: as.example.com
+        Authorization: Bearer $PAT
+        . . .
+        [
+          {
+            "resource_id": "{resource_id}",
+            "resource_scopes": [
+              "view"
+            ],
+            "claims": {
+                "organization": ["acme"]
+            }
+          }
+        ]
+
+    https://www.keycloak.org/docs/7.0/authorization_services/#creating-permission-ticket
 end note
 
 activate as
 
-as -->> rs : response
+as -->> rs : ticket
 deactivate rs
 deactivate as
 alt [[ https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.2.1{} 2.1 Resource Server Response to Client on Permission Request Success ]
