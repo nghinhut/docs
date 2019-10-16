@@ -230,6 +230,10 @@ activate rs
 deactivate rs
 
 == [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.5 5 Resource Server Responds to Client's RPT-Accompanied Resource Request]] ==
-client <<-- rs : Protected resource
+alt valid RPT & sufficient authorization
+    client <<-- rs : Protected resource
+else invalid RPT or an RPT associated with insufficient authorization.
+    ref over client, rs : 2 Resource Server Responds to Client's Tokenless Access Attempt
+end
 deactivate rs
 @enduml
