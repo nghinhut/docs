@@ -174,7 +174,7 @@ activate rs
 rs -> rs : introspect token
 activate rs
     note right
-        <i>decoded JWT
+        <i>decoded RPT
         {
            "active":true,
            "exp":1256953732,
@@ -191,7 +191,7 @@ activate rs
            ]
         }
     end note
-    opt [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-federated-authz-2.0-05.html#rfc.section.5.1 Resource Server Request to Token Introspection Endpoint]]
+    opt [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-federated-authz-2.0-05.html#rfc.section.5.1 Resource Server Request to Token Introspection Endpoint]
         as <<- rs : Resource Server Request to Token Introspection Endpoint
         note right
             POST /introspect HTTP/1.1
@@ -201,7 +201,7 @@ activate rs
             token=sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv
             }
         end note
-        alt [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-federated-authz-2.0-05.html#rfc.section.5.1.1 Authorization Server Response to Resource Server on Token Introspection Success]]
+        alt [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-federated-authz-2.0-05.html#rfc.section.5.1.1 Authorization Server Response to Resource Server on Token Introspection Success]
             as -->> rs
             note left
                 HTTP/1.1 200 OK
