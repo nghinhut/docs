@@ -11,7 +11,7 @@
 
 [plantuml]: https://plantuml.nghinhut.dev/proxy?src=
 [demo.puml]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/demo.puml
-[uma2-grant.puml]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/uma2-grant.puml
+[uma2-grant.puml]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/uma2-grant.puml&fmt=svg
 
 ```plantuml
 Alice -> Bob: Authentication Request
