@@ -13,6 +13,9 @@ actor "resource owner" as ro
 
 'rp -> asdf
 autonumber
+
+as <- ro : Set policy conditions (anytime)
+
 client ->> rs : [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.1{} 1. Client Requests Resource With No Token]]
 activate rs
 note left
