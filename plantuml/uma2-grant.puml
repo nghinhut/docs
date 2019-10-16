@@ -3,7 +3,7 @@
 header @nghinhut
 footer Page %page% of %lastpage%
 
-title [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html#rfc.section.3.4{} User-Managed Access (UMA) 2.0 Grant for OAuth 2.0 Authorization]]
+title [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html{} User-Managed Access (UMA) 2.0 Grant for OAuth 2.0 Authorization]]
 
 actor "requesting party" as rp
 participant "client" as client
