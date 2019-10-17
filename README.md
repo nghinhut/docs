@@ -1,6 +1,7 @@
 
 # UMA2
 ![][uma2-grant.puml]
+![][uma2-example-01]
 <!-- ![](plantuml/demo.puml) -->
 
 <!-- Image Links -->
@@ -11,3 +12,4 @@
 
 [demo.puml]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/demo.puml
 [uma2-grant.puml]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/uma2-grant.puml&fmt=svg
+[uma2-example-01]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/photos.apps.puml&fmt=svg
