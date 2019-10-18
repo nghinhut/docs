@@ -1,0 +1,57 @@
+@startuml
+
+package "IAM" {
+    component "Authz Server" as as
+    component Vault as vault
+    component IdP as idp
+
+'    interface "OAuth2 Authentication" as IOAuth2Authentication
+'    interface "UMA2 Authorization" as IUMA2Authorization
+'    as -- IOAuth2Authentication
+'    as -- IUMA2Authorization
+    interface "Encryption" as IEncrypt
+    interface "User" as IUser
+
+
+}
+
+package "Sharing" {
+    component "Health Record Service" as record
+    interface "Health Record" as IHealthRecord
+    component "HAPI FHIR Gateway" as fhir
+    interface "FHIR (HEART)" as IFHIR
+}
+
+package "Data Collection Management" {
+    component "Collector Service" as collector
+    component "SMS Service" as sms
+    component "Gatekeeper" as collector_gatekeeper
+    interface "Data Collection Management" as IDataCollectionManagement
+    interface "Secure Data Collection Management" as ISecureDataCollectionManagement
+}
+
+
+
+
+
+
+vault - IEncrypt
+IEncrypt <. idp : use
+idp -- IUser
+IUser <. as : use
+IUser <... fhir : use
+
+
+record - IHealthRecord
+IHealthRecord <. fhir : use
+fhir - IFHIR
+IHealthRecord <.... collector : use
+
+
+collector - IDataCollectionManagement
+IDataCollectionManagement <. collector_gatekeeper : use
+collector_gatekeeper - ISecureDataCollectionManagement
+
+IDataCollectionManagement <.. sms : use
+
+@enduml

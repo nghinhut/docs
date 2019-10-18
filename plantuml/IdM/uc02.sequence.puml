@@ -1,0 +1,39 @@
+@startuml
+header @nghinhut
+title ListUsers
+
+participant "Client" as client
+participant "IdM Service" as idm
+participant "IdM Database" as db
+participant "Encryption Service" as es
+
+client ->> idm
+activate idm
+
+idm -> idm : encrypt()
+activate idm
+idm -> idm : internalEncrypt()
+activate idm
+deactivate idm
+
+idm -> idm : externalEncrypt()
+activate idm
+idm ->> es : request encryption with alg [[https://www.vaultproject.io/docs/secrets/transit/index.html#chacha20-poly1305 ChaCha20-Poly1305 with a 256-bit key]]
+note right
+    POST /transit/encrypt/:name
+
+    [[https://www.vaultproject.io/api/secret/transit/index.html#encrypt-data ref: Encrypt Data API]]
+end note
+activate es
+idm <<-- es
+deactivate es
+deactivate idm
+deactivate idm
+
+idm -> db : save()
+idm <-- db : result
+
+client <<-- idm : return success response (empty body)
+deactivate idm
+
+@enduml

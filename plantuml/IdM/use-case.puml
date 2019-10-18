@@ -1,0 +1,38 @@
+@startuml
+!include actors.iuml
+
+left to right direction
+
+
+rectangle IdM {
+    usecase "CreateUser()" as UC01
+    usecase "ListUsers()" as UC02
+    usecase "UpdateUser()" as UC03
+    usecase "DeleteUser()" as UC04
+
+}
+
+
+note left of client
+    Authenticated clients: Keycloak (with custom plugin),
+    or any other system that has knowledge & permission to access
+end note
+
+
+note right of es
+    supported encryption services: Vault by HashiCorp
+end note
+
+
+client - UC01
+client - UC02
+client -- UC03
+client -- UC04
+
+UC01 - es
+UC02 - es
+UC03 -- es
+UC04 -- es
+
+
+@enduml
