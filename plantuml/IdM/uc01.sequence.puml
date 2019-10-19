@@ -64,7 +64,7 @@ deactivate idm
 deactivate idm
 
 idm -> db : save()
-    db -> db : INSERT ... INTO "[[$BASE_URL/classes.puml Users]]";
+    db -> db : INSERT ... INTO "[[$BASE_URL/class.puml Users]]";
 idm <-- db : result
 
 idm -> idm : createBlindIndex()
@@ -73,7 +73,7 @@ activate idm
         idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
     end
     idm -> db : updateBlindIndex()
-        db -> db : INSERT ... INTO "[[$BASE_URL/classes.puml UsersFilters]]"
+        db -> db : INSERT ... INTO "[[$BASE_URL/class.puml UsersFilters]]"
     idm <<-- db
 deactivate idm
 
