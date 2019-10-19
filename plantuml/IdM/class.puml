@@ -1,0 +1,52 @@
+@startuml
+header @nghinhut
+title IdM Classes
+
+class "User" as user {
+    -- private --
+    - id: string
+    - createdAt: timestamp
+    - updatedAt: timestamp
+    -- encrypted --
+    - username: string
+    - email: string
+    - firstName: string
+    - lastName: string
+    - attributes: {key: string, value: Object}[]
+    .. Getter ..
+    + getId() : string
+    + getUsername() : string
+    + getEmail() : string
+    + getFirstName() : string
+    + getLastName() : string
+    + getAttribute(key: string) : Object
+    + getAttributes() : <string, Object>
+    .. Setter ..
+    + setUsername(username: string) : void
+    + setEmail(email: string) : void
+    + setFirstName(firstName: string) : void
+    + setLastName(lastName: string) : void
+    + setAttribute(key: string, value: Object) : void
+}
+
+class "UserFilter" as user_filter {
+    -- private --
+    - id: number
+    - UserId: string
+    -- encrypted --
+    - label: string
+    - value: string
+    .. Getter ..
+    + getId() : number
+    + getUserId() : string
+    + getLabel() : string
+    + getValue() : string
+    .. Setter ..
+    + setUserId(userId: string) : void
+    + setLabel(label: string) : void
+    + setValue(value: string) : void
+}
+
+user -* user_filter : hasMany
+
+@enduml

@@ -1,4 +1,6 @@
 @startuml
+!$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/plantuml/IdM"
+
 header @nghinhut
 title Create A New User (UMA2 Protected)
 
@@ -60,7 +62,18 @@ deactivate idm
 deactivate idm
 
 idm -> db : save()
+    db -> db : INSERT ... INTO "[[$REPO_URL/classes.puml Users]]";
 idm <-- db : result
+
+idm -> idm : createBlindIndex()
+activate idm
+    loop for each attribute in ['username', 'email', 'first_name', 'last_name']
+        idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
+    end
+    idm -> db : updateBlindIndex()
+        db -> db : INSERT ... INTO "[[$REPO_URL/classes.puml UsersFilters]]"
+    idm <<-- db
+deactivate idm
 
 client <<-- idm : return success response (empty body)
 deactivate idm

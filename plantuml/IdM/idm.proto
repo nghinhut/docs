@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package nghinhut.idm;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+
+// gRPC Services
+service IdentityManagement {
+    rpc CreateUser(User) returns (google.protobuf.Empty) {}
+    rpc ListUsersStream(ListUsersRequest) returns (stream User) {}
+    rpc UpdateUser(User) returns (google.protobuf.Empty) {}
+    rpc DeleteUser(User) returns (google.protobuf.Empty) {}
+}
+
+
+// Protocol Buffers messages
+message User {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string first_name = 4;
+    string last_name = 5;
+    map<string, google.protobuf.Any> attributes = 7;
+    bool enabled = 10;
+    google.protobuf.Timestamp created_at = 11;
+    google.protobuf.Timestamp updated_at = 12;
+}
+
+message ListUsersRequest {
+    string search = 1;
+}
+
+message SearchRequest {
+    string query = 1;
+    int32 page_number = 2;
+    int32 result_per_page = 3;
+}
