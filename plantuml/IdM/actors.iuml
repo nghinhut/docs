@@ -1,2 +1,0 @@
-actor "Client" as client
-actor "Encryption Service" as es
