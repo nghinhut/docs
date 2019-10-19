@@ -1,13 +1,16 @@
 @startuml
+!$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/plantuml/IdM"
+!$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
+!$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
 left to right direction
 
 actor "Client" as client
 actor "Encryption Service" as es
 rectangle IdM {
-    usecase "CreateUser()" as UC01
-    usecase "ListUsers()" as UC02
-    usecase "UpdateUser()" as UC03
-    usecase "DeleteUser()" as UC04
+    usecase "[[$BASE_URL/uc01.sequence.puml CreateUser()]]" as UC01
+    usecase "[[$BASE_URL/uc02.sequence.puml ListUsers()]]" as UC02
+    usecase "[[$BASE_URL/uc03.sequence.puml UpdateUser()]]" as UC03
+    usecase "[[$BASE_URL/uc04.sequence.puml DeleteUser()]]" as UC04
 
 }
 
