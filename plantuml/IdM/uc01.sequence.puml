@@ -43,6 +43,7 @@ idm -> idm : policyEnforce()
 activate idm
 deactivate idm
 
+== Perform Encryption Process ==
 idm -> idm : encrypt()
 activate idm
 idm -> idm : internalEncrypt()
@@ -62,11 +63,11 @@ idm <<-- es
 deactivate es
 deactivate idm
 deactivate idm
-
+== Save Encrypted User's Information ==
 idm -> db : save()
     db -> db : INSERT ... INTO "[[$BASE_URL/class.puml Users]]";
 idm <-- db : result
-
+== Create Blind Indexing ==
 idm -> idm : createBlindIndex()
 activate idm
     loop for each attribute in ['username', 'email', 'first_name', 'last_name']
