@@ -1,5 +1,7 @@
 @startuml
 !$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/plantuml/IdM"
+!$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
+!$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
 
 header @nghinhut
 title Create A New User (UMA2 Protected)
@@ -62,7 +64,7 @@ deactivate idm
 deactivate idm
 
 idm -> db : save()
-    db -> db : INSERT ... INTO "[[$REPO_URL/classes.puml Users]]";
+    db -> db : INSERT ... INTO "[[$BASE_URL/classes.puml Users]]";
 idm <-- db : result
 
 idm -> idm : createBlindIndex()
@@ -71,7 +73,7 @@ activate idm
         idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
     end
     idm -> db : updateBlindIndex()
-        db -> db : INSERT ... INTO "[[$REPO_URL/classes.puml UsersFilters]]"
+        db -> db : INSERT ... INTO "[[$BASE_URL/classes.puml UsersFilters]]"
     idm <<-- db
 deactivate idm
 
