@@ -4,8 +4,11 @@
 ![][uma2-example-01]
 <!-- ![](plantuml/demo.puml) -->
 
-<!-- Image Links -->
 
+# IdM
+![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/IdM/use-case.puml)
+
+<!-- Image Links -->
 [www.plantuml.com]: http://www.plantuml.com/plantuml/proxy?src=
 [plantuml.nghinhut.dev]: https://plantuml.nghinhut.dev/proxy?src=
 
@@ -13,3 +16,5 @@
 [demo.puml]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/demo.puml
 [uma2-grant.puml]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/uma2-grant.puml&fmt=svg
 [uma2-example-01]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/photos.apps.puml&fmt=svg
+
+
