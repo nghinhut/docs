@@ -1,4 +1,7 @@
 @startuml
+'===== AUTO GENERATE HEADER START =====
+'===== AUTO GENERATE HEADER END =====
+
 
 package "IAM" {
     component "Authz Server" as as

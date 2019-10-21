@@ -1,4 +1,7 @@
 @startuml
+'===== AUTO GENERATE HEADER START =====
+'===== AUTO GENERATE HEADER END =====
+
 header @nghinhut
 title The Microservices Goals
 

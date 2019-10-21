@@ -1,4 +1,7 @@
 @startuml
+'===== AUTO GENERATE HEADER START =====
+'===== AUTO GENERATE HEADER END =====
+
 rectangle "Cross-Cutting Concern Patterns" as CrossCuttingConcern #green
 
 rectangle "External Configuration" as CrossCuttingConcernP1

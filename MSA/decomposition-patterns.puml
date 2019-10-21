@@ -1,4 +1,7 @@
 @startuml
+'===== AUTO GENERATE HEADER START =====
+'===== AUTO GENERATE HEADER END =====
+
 rectangle "Decomposition Patterns" as Decomposition #green
 
 rectangle "Decompose by Business Capability" as DecompositionP1

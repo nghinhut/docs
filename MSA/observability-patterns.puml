@@ -1,4 +1,7 @@
 @startuml
+'===== AUTO GENERATE HEADER START =====
+'===== AUTO GENERATE HEADER END =====
+
 rectangle "Observability Patterns" as Observability #green
 
 rectangle "Log Aggregation" as ObservabilityP1

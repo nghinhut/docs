@@ -1,4 +1,7 @@
 @startuml
+'===== AUTO GENERATE HEADER START =====
+'===== AUTO GENERATE HEADER END =====
+
 rectangle "Database Patterns" as Database #green
 
 rectangle "Database per Service" as DatabaseP1

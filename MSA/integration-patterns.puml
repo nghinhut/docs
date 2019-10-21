@@ -1,4 +1,7 @@
 @startuml
+'===== AUTO GENERATE HEADER START =====
+'===== AUTO GENERATE HEADER END =====
+
 rectangle "Integration Patterns" as Integration #green
 
 rectangle "API Gateway Pattern" as IntegrationP1
