@@ -4,7 +4,7 @@
 ![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/MSA/msa.puml)
 
 # UMA2
-![](https://plantuml.nghinhut.dev/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/UMA2/uma2-grant.puml)
+![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/UMA2/uma2-grant.puml)
 
 # IdM
 ![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/IdM/use-case.puml)
