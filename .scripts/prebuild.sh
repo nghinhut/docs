@@ -1,17 +1,17 @@
 
 FILES=$(find -type f -name "*.puml")
-HEADER_START="'===== AUTO GENERATE HEADER START ====="
-HEADER_END="'===== AUTO GENERATE HEADER END ====="
+BEGIN_HEADER="'-----BEGIN HEADER-----"
+END_HEADER="'-----END HEADER-----"
 
 appendHeaderToFile() {
   file=$1
   generatedHeaderFound=false
 
-  generatedHeaderFound=$(grep "$HEADER_START" $file)
+  generatedHeaderFound=$(grep "$BEGIN_HEADER" $file)
 
   if [[ -z $generatedHeaderFound ]]; then
     echo "header not found"
-    sed -i "s/@startuml/@startuml\n$HEADER_START\n$HEADER_END\n/g" $file
+    sed -i "s/@startuml/@startuml\n$BEGIN_HEADER\n$END_HEADER\n/g" "$file"
   fi
 
   HEADER_CONTENT="'header content"

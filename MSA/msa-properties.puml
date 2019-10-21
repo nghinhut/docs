@@ -1,6 +1,6 @@
 @startuml
-'===== AUTO GENERATE HEADER START =====
-'===== AUTO GENERATE HEADER END =====
+'-----BEGIN HEADER-----
+'-----END HEADER-----
 
 header @nghinhut
 title Microservices Architecture Built-in Properties

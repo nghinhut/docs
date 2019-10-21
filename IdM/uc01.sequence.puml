@@ -1,6 +1,6 @@
 @startuml
-'===== AUTO GENERATE HEADER START =====
-'===== AUTO GENERATE HEADER END =====
+'-----BEGIN HEADER-----
+'-----END HEADER-----
 
 !$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
 !$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"

@@ -1,6 +1,6 @@
 @startuml
-'===== AUTO GENERATE HEADER START =====
-'===== AUTO GENERATE HEADER END =====
+'-----BEGIN HEADER-----
+'-----END HEADER-----
 
 'https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html
 header @nghinhut
