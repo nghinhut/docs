@@ -14,8 +14,5 @@
 [plantuml.nghinhut.dev]: https://plantuml.nghinhut.dev/proxy?src=
 
 
-[demo.puml]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/demo.puml
-[uma2-grant.puml]: 
-[uma2-example-01]: https://plantuml.nghinhut.dev/proxy?src=https://gitlab.com/nghinhut/docs/raw/master/UMA2/photos.apps.puml&fmt=svg
 
 
