@@ -1,0 +1,14 @@
+@startuml
+rectangle "Design Patterns for Microservices" as DpfMSA #yellow
+
+rectangle "Decomposition Patterns" as Decomposition #green
+rectangle "Integration Patterns" as Integration #green
+rectangle "Database Patterns" as Database #green
+rectangle "Observability Patterns" as Observability #green
+rectangle "Cross-Cutting Concern Patterns" as CrossCuttingConcern #green
+DpfMSA --- Decomposition
+DpfMSA --- Integration
+DpfMSA --- Database
+DpfMSA --- Observability
+DpfMSA --- CrossCuttingConcern
+@enduml

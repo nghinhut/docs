@@ -1,0 +1,14 @@
+@startuml
+rectangle "Database Patterns" as Database #green
+
+rectangle "Database per Service" as DatabaseP1
+rectangle "Shared Database per Service" as DatabaseP2
+rectangle "Command Query Responsibility Segregation (CQRS)" as DatabaseP3
+rectangle "Event Sourcing" as DatabaseP4
+rectangle "Saga Pattern" as DatabaseP5
+Database --- DatabaseP1
+Database --- DatabaseP2
+Database --- DatabaseP3
+Database --- DatabaseP4
+Database --- DatabaseP5
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+rectangle "Cross-Cutting Concern Patterns" as CrossCuttingConcern #green
+
+rectangle "External Configuration" as CrossCuttingConcernP1
+rectangle "Service Discovery Pattern" as CrossCuttingConcernP2
+rectangle "Circuit Breaker Pattern" as CrossCuttingConcernP3
+rectangle "Blue-Green Deployment Pattern" as CrossCuttingConcernP4
+CrossCuttingConcern --- CrossCuttingConcernP1
+CrossCuttingConcern --- CrossCuttingConcernP2
+CrossCuttingConcern --- CrossCuttingConcernP3
+CrossCuttingConcern --- CrossCuttingConcernP4
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+rectangle "Integration Patterns" as Integration #green
+
+rectangle "API Gateway Pattern" as IntegrationP1
+rectangle "Aggregator Pattern" as IntegrationP2
+rectangle "Proxy Pattern" as IntegrationP3
+rectangle "Gateway Routing Pattern" as IntegrationP4
+rectangle "Chained Microservice Pattern" as IntegrationP5
+rectangle "Branch Pattern" as IntegrationP6
+rectangle "Client-Side UI Composition Pattern" as IntegrationP7
+Integration --- IntegrationP1
+Integration --- IntegrationP2
+Integration --- IntegrationP3
+Integration --- IntegrationP4
+Integration --- IntegrationP5
+Integration --- IntegrationP6
+Integration --- IntegrationP7
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+rectangle "Observability Patterns" as Observability #green
+
+rectangle "Log Aggregation" as ObservabilityP1
+rectangle "Performance Metrics" as ObservabilityP2
+rectangle "Distributed Tracing" as ObservabilityP3
+rectangle "Health Check" as ObservabilityP4
+Observability --- ObservabilityP1
+Observability --- ObservabilityP2
+Observability --- ObservabilityP3
+Observability --- ObservabilityP4
+@enduml
