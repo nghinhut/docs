@@ -1,0 +1,19 @@
+@startuml
+header @nghinhut
+title The Microservices Goals
+
+rectangle "Microservices Architecture" as msa #green
+
+rectangle "Reduce Cost" as goal1 #yellow
+rectangle "Increase Release Speed" as goal2 #yellow
+rectangle "Improve Resilience" as goal3 #yellow
+rectangle "Enable Visibility" as goal4 #yellow
+
+msa -- goal1
+msa -- goal2
+msa -- goal3
+msa -- goal4
+
+
+
+@enduml

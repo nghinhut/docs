@@ -1,0 +1,21 @@
+@startuml
+header @nghinhut
+title Microservices Architecture
+
+!$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/MSA"
+!$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
+!$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
+
+rectangle "<b>Microservices Architecture" as msa #green
+
+rectangle "[[# Definition]]" as definition #yellow
+rectangle "[[$BASE_URL/msa-goals.puml Goals]]" as goals #yellow
+rectangle "[[$BASE_URL/msa-properties.puml Properties]]" as properties #yellow
+rectangle "[[$BASE_URL/msa-design-patterns.puml Design Patterns]]" as design_patterns #yellow
+
+definition -- msa
+goals -- msa
+properties -- msa
+msa -- design_patterns
+
+@enduml

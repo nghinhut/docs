@@ -1,5 +1,5 @@
 @startuml
-!$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/plantuml/IdM"
+!$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
 !$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
 !$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
 left to right direction
@@ -11,7 +11,6 @@ rectangle IdM {
     usecase "[[$BASE_URL/uc02.sequence.puml ListUsers()]]" as UC02
     usecase "[[$BASE_URL/uc03.sequence.puml UpdateUser()]]" as UC03
     usecase "[[$BASE_URL/uc04.sequence.puml DeleteUser()]]" as UC04
-
 }
 
 

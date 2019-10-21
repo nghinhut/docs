@@ -1,0 +1,27 @@
+@startuml
+header @nghinhut
+title Microservices Architecture Built-in Properties
+
+rectangle "Microservices" as msa
+
+circle "Scalability" as scalability
+circle "Availability" as availability
+circle "Resiliency" as resiliency
+circle "Flexibility" as flexibility
+circle "Independent, autonomous" as independent_autonomous
+circle "Decentralized governance" as decentralized_governance
+circle "Failure isolation" as failure_isolation
+circle "Auto-Provisioning" as auto_provisioning
+circle "Continuous delivery through DevOps" as cd
+
+scalability -- msa
+availability -- msa
+resiliency -- msa
+flexibility -- msa
+msa -- independent_autonomous
+msa -- decentralized_governance
+msa -- failure_isolation
+msa -- auto_provisioning
+msa -- cd
+
+@enduml
