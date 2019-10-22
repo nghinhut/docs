@@ -11,12 +11,48 @@ participant "IdM Service" as idm
 participant "IdM Database" as db
 participant "Encryption Service" as es
 
-client ->> idm
+== Authorization ==
+activate client
+ref over client, idm, as
+    [[$BASE_URL/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
+end
+
+{start_d1} client ->> idm : request delete user 197 with access token (RPT)
+note left
+    DELETE /users/197
+end note
+
 activate idm
-
-
-
-client <<-- idm : return success response (empty body)
+idm -> idm : tokenIntrospect()
+activate idm
+    opt for additional validation\n(offer better security but increases request duration
+        ref over idm, as
+            Introspect token with Authz Server
+        end
+    end
 deactivate idm
+
+
+idm -> idm : policyEnforce()
+
+== Deleting ==
+alt SOFT_DELETE_ENABLED = true
+    idm ->> db : UPDATE Users SET deletedAt = now() WHERE id = 197;
+else SOFT_DELETE_ENABLED = false
+    idm ->> db : DELETE Users WHERE id = 197
+end
+idm <<-- db : result
+
+client <<-- idm : response (empty body)
+deactivate client
+
+== Delete Blind Index ==
+opt SOFT_DELETE_ENABLED && DELETE_BIND_INDEX_ENABLED
+    idm -> db : DELETE * FROM UserFilter WHERE UserID = 197
+    idm <-- db : result
+end
+
+deactivate idm
+
 
 @enduml
