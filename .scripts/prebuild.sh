@@ -24,7 +24,7 @@ appendHeaderToFile() {
   fi
 
   filepath=$(echo "$file" | cut -d. -f2 | sed -e "s/\//\\\\\//g")
-  diagramURL="https\:\/\/gitlab\.com\/nghinhut\/docs\/raw\/$(git rev-parse HEAD)$filepath\.puml"
+  diagramURL="https\:\/\/gitlab\.com\/nghinhut\/docs\/blob\/$(git rev-parse HEAD)$filepath\.puml"
   HEADER_CONTENT="header \[[mailto:nghinhut@gmail.com @nghinhut]]\nfooter [[$diagramURL]]"
 #  sed -e '1h;2,$H;$!d;g' -e "s/$BEGIN_HEADER.*$END_HEADER/$BEGIN_HEADER\n$HEADER_CONTENT\n$END_HEADER/g"
 #  sed "/^$BEGIN_HEADER$/{$!{N;s/^$BEGIN_HEADER\n.*$END_HEADER\$/$BEGIN_HEADER\n$HEADER_NOTIFY\n$HEADER_CONTENT\n$END_HEADER/;ty;P;D;:y}}"
