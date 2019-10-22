@@ -5,7 +5,6 @@ header @nghinhut
 footer https://gitlab.com/nghinhut/docs/raw/9688f34d89be35b55ae664523133555104b4bd3b/MSA/observability-patterns.puml
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
-
 rectangle "Observability Patterns" as Observability #green
 
 rectangle "Log Aggregation" as ObservabilityP1

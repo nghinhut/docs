@@ -4,18 +4,6 @@
 header @nghinhut
 footer https://gitlab.com/nghinhut/docs/raw/9688f34d89be35b55ae664523133555104b4bd3b/IdM/uc02.puml
 '-----END auto generated metadata please keep comment here to allow auto update-----
-
-
-
-
-
-
-
-
-
-
-
-header @nghinhut
 title ListUsers
 
 participant "Client" as client

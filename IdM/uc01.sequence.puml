@@ -5,21 +5,9 @@ header @nghinhut
 footer https://gitlab.com/nghinhut/docs/raw/9688f34d89be35b55ae664523133555104b4bd3b/IdM/uc01.puml
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
-
-
-
-
-
-
-
-
-
-
 !$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
 !$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
 !$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
-
-header @nghinhut
 title Create A New User (UMA2 Protected)
 
 participant "Client" as client
