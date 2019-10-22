@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F6d75ca1411e897f313e374f2891992f9a9ba9aac%5C%2FMSA%5C%2Fmsa-goals%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/6d75ca1411e897f313e374f2891992f9a9ba9aac/MSA/msa-goals.puml https://gitlab.com/nghinhut/docs/blob/6d75ca1411e897f313e374f2891992f9a9ba9aac/MSA/msa-goals.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F125ff57f05f4260e72c6ca8346868dc5a679be2f%5C%2FMSA%5C%2Fmsa-goals%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/125ff57f05f4260e72c6ca8346868dc5a679be2f/MSA/msa-goals.puml https://gitlab.com/nghinhut/docs/blob/125ff57f05f4260e72c6ca8346868dc5a679be2f/MSA/msa-goals.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title The Microservices Goals
 
