@@ -2,7 +2,7 @@
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
 header [[mailto:nghinhut@gmail.com @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/4725f15bbff59f2227e3834e02e5dd3b17c9d433/IdM/uc03.puml https://gitlab.com/nghinhut/docs/blob/4725f15bbff59f2227e3834e02e5dd3b17c9d433/IdM/uc03.puml]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/c7527bf4514f528016311f1eb897d5522f96db4e/IdM/uc03.puml https://gitlab.com/nghinhut/docs/blob/c7527bf4514f528016311f1eb897d5522f96db4e/IdM/uc03.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title ListUsers
 
