@@ -25,7 +25,6 @@ activate idm
         [[$BASE_URL/query-encrypted-users.function.puml Query Encrypted Users]] with empty query
     end
 
-
     loop for each user in users <//encrypted//>
         idm -> idm : userMsg = new idmGrpc.User()     // proto message
         loop for each attribute in user's attributes
@@ -40,5 +39,4 @@ activate idm
     end
 
 deactivate idm
-
 @enduml

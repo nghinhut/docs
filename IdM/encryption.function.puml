@@ -32,5 +32,4 @@ activate idm
         end note
     idm <<-- es : return encrypted string (encrypted2 value)
 deactivate idm
-
 @enduml

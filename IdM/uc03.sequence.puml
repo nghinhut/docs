@@ -17,6 +17,7 @@ participant "IdM Database" as db
 participant "UMA2 Authorization Server" as as
 participant "Encryption Service" as es
 
+
 == Authorization ==
 activate client
 ref over client, idm, as
@@ -61,8 +62,6 @@ loop for each attribute in user's attributes
     end
 end
 
-
-
 idm <<-- es
 deactivate es
 
@@ -71,6 +70,7 @@ idm <-- db : result
 
 {end_d1} client <<-- idm : return success response (empty body)
 deactivate client
+
 
 == Update Blind Index ==
 idm -> idm : createBlindIndex()
@@ -82,7 +82,7 @@ idm -> idm : createBlindIndex()
     idm <<-- db
 deactivate idm
 
+
 'Duration Constrains
 {start_d1} <-> {end_d1} : <5s
-
 @enduml

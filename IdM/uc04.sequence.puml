@@ -11,6 +11,7 @@ participant "IdM Service" as idm
 participant "IdM Database" as db
 participant "UMA2 Authorization Server" as as
 
+
 == Authorization ==
 activate client
 ref over client, idm, as
@@ -32,8 +33,8 @@ activate idm
     end
 deactivate idm
 
-
 idm -> idm : policyEnforce()
+
 
 == Deleting ==
 alt SOFT_DELETE_ENABLED = true
@@ -46,6 +47,7 @@ idm <<-- db : result
 client <<-- idm : response (empty body)
 deactivate client
 
+
 == Delete Blind Index ==
 opt SOFT_DELETE_ENABLED && DELETE_BIND_INDEX_ENABLED
     idm -> db : DELETE * FROM UserFilter WHERE UserId = 197
@@ -53,6 +55,4 @@ opt SOFT_DELETE_ENABLED && DELETE_BIND_INDEX_ENABLED
 end
 
 deactivate idm
-
-
 @enduml

@@ -19,5 +19,4 @@ activate idm
         idm <-- db : user <//encrypted//>
     end
 deactivate idm
-
 @enduml

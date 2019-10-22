@@ -56,5 +56,4 @@ IDataCollectionManagement <. collector_gatekeeper : use
 collector_gatekeeper - ISecureDataCollectionManagement
 
 IDataCollectionManagement <.. sms : use
-
 @enduml

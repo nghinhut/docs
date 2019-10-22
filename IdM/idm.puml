@@ -28,7 +28,6 @@ idm - privacy_considerations
 requirements -- functional_requirements
 requirements -- non_functional_requirements
 
-
 note left of functional_requirements
     Enable ability to store, access and manage users between multiple services, applications
     with application-level encryption
@@ -79,5 +78,4 @@ note left of goals
     **3 Work with OpenID Connect Provider**: has user information needed for OpenID standard claims
     **4 Ability to interchange with other standards**: use gRPC code generate to create a lightweight adapter works with FHIR.
 end note
-
 @enduml
