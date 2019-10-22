@@ -2,7 +2,7 @@
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
 header [[mailto:nghinhut@gmail.com @nghinhut]]
-footer https://gitlab.com/nghinhut/docs/raw/ebe2eb4d3e6f77b666650176f6769814bcb16971/MSA/msa.puml
+footer [[https://gitlab.com/nghinhut/docs/raw/9bc3a895ef09f5f921313c9bc6e8dc60f43da5dc/MSA/msa.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title Microservices Architecture
 
