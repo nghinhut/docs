@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F015d4bf43be4409bb204e41e9ebdb86cd47660cf%5C%2FIdM%5C%2Fuc01%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/015d4bf43be4409bb204e41e9ebdb86cd47660cf/IdM/uc01.puml https://gitlab.com/nghinhut/docs/blob/015d4bf43be4409bb204e41e9ebdb86cd47660cf/IdM/uc01.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F3978715f673b335c649b2ed17406b18c08f6cbc7%5C%2FIdM%5C%2Fuc01%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/3978715f673b335c649b2ed17406b18c08f6cbc7/IdM/uc01.puml https://gitlab.com/nghinhut/docs/blob/3978715f673b335c649b2ed17406b18c08f6cbc7/IdM/uc01.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
 !$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
@@ -16,7 +16,7 @@ participant "IdM Database" as db
 participant "UMA2 Authorization Server" as as
 participant "Encryption Service" as es
 
-
+activate client
 client ->> idm : client request permission ticket
 activate idm
     idm -> idm : createPermissionTicket()
@@ -41,36 +41,32 @@ activate idm
 
 idm -> idm : tokenIntrospect()
 activate idm
+    opt for additional validation\n(offer better security but affect performance (request duration may increase ~10-1000ms)
+        ref over idm, as
+            Introspect token with Authz Server
+        end
+    end
 deactivate idm
 
 idm -> idm : policyEnforce()
 activate idm
 deactivate idm
 
-== Perform Encryption Process ==
-idm -> idm : encrypt()
-activate idm
-idm -> idm : internalEncrypt()
-activate idm
-deactivate idm
 
-idm -> idm : externalEncrypt()
-activate idm
-idm ->> es : request encryption with alg [[https://www.vaultproject.io/docs/secrets/transit/index.html#chacha20-poly1305 ChaCha20-Poly1305 with a 256-bit key]]
-note right
-    POST /transit/encrypt/:name
+loop for each attribute in user's attributes
+    ref over idm, es
+        Encrypt user's attribute by [[$BASE_URL/encryption.function.puml Encryption($attribute)]]
+    end
+end
 
-    [[https://www.vaultproject.io/api/secret/transit/index.html#encrypt-data ref: Encrypt Data API]]
-end note
-activate es
-idm <<-- es
-deactivate es
-deactivate idm
-deactivate idm
-== Save Encrypted User's Information ==
+
 idm -> db : save()
     db -> db : INSERT ... INTO "[[$BASE_URL/class.puml Users]]";
 idm <-- db : result
+
+client <<-- idm : return success response (empty body)
+deactivate client
+
 == Create Blind Indexing ==
 idm -> idm : createBlindIndex()
 activate idm
@@ -82,7 +78,7 @@ activate idm
     idm <<-- db
 deactivate idm
 
-client <<-- idm : return success response (empty body)
+
 deactivate idm
 
 @enduml

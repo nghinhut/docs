@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F015d4bf43be4409bb204e41e9ebdb86cd47660cf%5C%2FMSA%5C%2Fdecomposition-patterns%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/015d4bf43be4409bb204e41e9ebdb86cd47660cf/MSA/decomposition-patterns.puml https://gitlab.com/nghinhut/docs/blob/015d4bf43be4409bb204e41e9ebdb86cd47660cf/MSA/decomposition-patterns.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F3978715f673b335c649b2ed17406b18c08f6cbc7%5C%2FMSA%5C%2Fdecomposition-patterns%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/3978715f673b335c649b2ed17406b18c08f6cbc7/MSA/decomposition-patterns.puml https://gitlab.com/nghinhut/docs/blob/3978715f673b335c649b2ed17406b18c08f6cbc7/MSA/decomposition-patterns.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
 rectangle "Decomposition Patterns" as Decomposition #green

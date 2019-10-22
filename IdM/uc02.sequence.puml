@@ -1,10 +1,10 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F015d4bf43be4409bb204e41e9ebdb86cd47660cf%5C%2FIdM%5C%2Fuc02%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/015d4bf43be4409bb204e41e9ebdb86cd47660cf/IdM/uc02.puml https://gitlab.com/nghinhut/docs/blob/015d4bf43be4409bb204e41e9ebdb86cd47660cf/IdM/uc02.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F3978715f673b335c649b2ed17406b18c08f6cbc7%5C%2FIdM%5C%2Fuc02%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/3978715f673b335c649b2ed17406b18c08f6cbc7/IdM/uc02.puml https://gitlab.com/nghinhut/docs/blob/3978715f673b335c649b2ed17406b18c08f6cbc7/IdM/uc02.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
-title ListUsers
+title List Users Stream
 !$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
 !$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
 !$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
@@ -22,9 +22,23 @@ end
 client ->> idm : list users
 activate idm
     ref over idm
-        [[$BASE_URL/query-encrypted-users.function.puml Query Encrypted Users]] by [ username | email ]
+        [[$BASE_URL/query-encrypted-users.function.puml Query Encrypted Users]] with empty query
     end
-    client <<-- idm
+
+
+    loop for each user in users <//encrypted//>
+        idm -> idm : userMsg = new idmGrpc.User()     // proto message
+        loop for each attribute in user's attributes
+            ref over idm, es
+                Decrypt user's attribute by [[$BASE_URL/decryption.function.puml{} Decryption(attribute)]]
+            end
+
+            idm -> idm : userMsg.set(attribute //<decrypted>//, value)
+        end
+
+        client <<-- idm : write userMsg
+    end
+
 deactivate idm
 
 @enduml
