@@ -48,7 +48,7 @@ deactivate client
 
 == Delete Blind Index ==
 opt SOFT_DELETE_ENABLED && DELETE_BIND_INDEX_ENABLED
-    idm -> db : DELETE * FROM UserFilter WHERE UserID = 197
+    idm -> db : DELETE * FROM UserFilter WHERE UserId = 197
     idm <-- db : result
 end
 
