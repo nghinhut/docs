@@ -10,7 +10,6 @@ participant "Client" as client
 participant "IdM Service" as idm
 participant "IdM Database" as db
 participant "UMA2 Authorization Server" as as
-participant "Encryption Service" as es
 
 == Authorization ==
 activate client
