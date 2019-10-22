@@ -7,7 +7,7 @@ footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/n
 title IdM Encryption Function
 participant "IdM Service" as idm
 participant "Encryption Service" as es
-participant "Security Admin" as esAdmin
+actor "Security Admin" as esAdmin
 
 es <- esAdmin : create a key with key name (Ex: keyname: 'idm-key01') (anytime)
 
