@@ -1,6 +1,10 @@
 @startuml
-'-----BEGIN HEADER-----
-'-----END HEADER-----
+'-----START auto generated metadata please keep comment here to allow auto update-----
+'-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
+header @nghinhut
+footer https://gitlab.com/nghinhut/docs/raw/9688f34d89be35b55ae664523133555104b4bd3b/MSA/msa-goals.puml
+'-----END auto generated metadata please keep comment here to allow auto update-----
+
 
 header @nghinhut
 title The Microservices Goals

@@ -1,11 +1,11 @@
 @startuml
-'-----BEGIN HEADER-----
-'-----END HEADER-----
+'-----START auto generated metadata please keep comment here to allow auto update-----
+'-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
+header @nghinhut
+footer https://gitlab.com/nghinhut/docs/raw/9688f34d89be35b55ae664523133555104b4bd3b/UMA2/uma2-grant.puml
+'-----END auto generated metadata please keep comment here to allow auto update-----
 
 'https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html
-header @nghinhut
-footer Page %page% of %lastpage%
-
 title [[https://docs.kantarainitiative.org/uma/wg/oauth-uma-grant-2.0-05.html{} User-Managed Access (UMA) 2.0 Grant for OAuth 2.0 Authorization]]
 
 actor "requesting party" as rp

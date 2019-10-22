@@ -1,7 +1,8 @@
 
 FILES=$(find -type f -name "*.puml")
-BEGIN_HEADER="'-----BEGIN HEADER-----"
-END_HEADER="'-----END HEADER-----"
+BEGIN_HEADER="'-----START auto generated metadata please keep comment here to allow auto update-----"
+HEADER_NOTIFY="'-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----"
+END_HEADER="'-----END auto generated metadata please keep comment here to allow auto update-----"
 
 appendHeaderToFile() {
   file=$1
@@ -9,14 +10,25 @@ appendHeaderToFile() {
 
   generatedHeaderFound=$(grep "$BEGIN_HEADER" $file)
 
-  if [[ -z $generatedHeaderFound ]]; then
-    echo "header not found"
-    sed -i "s/@startuml/@startuml\n$BEGIN_HEADER\n$END_HEADER\n/g" "$file"
+  beginHeaderLineNumber=$(grep -n "$BEGIN_HEADER" "$file" | cut -d: -f1)
+  endHeaderLineNumber=$(grep -n "$END_HEADER" "$file" | cut -d: -f1)
+
+  if [[ $beginHeaderLineNumber && $endHeaderLineNumber ]]; then
+    # header exists
+    sed -i "${beginHeaderLineNumber},${endHeaderLineNumber}d" "$file"
   fi
 
-  HEADER_CONTENT="'header content"
-#  sed -e '1h;2,$H;$!d;g' -e "s/$HEADER_START.*$HEADER_END/$HEADER_START\n$HEADER_CONTENT\n$HEADER_END/g"
-  sed "/^$HEADER_START$/{$!{N;s/^$HEADER_START\n.*$HEADER_END\$/$HEADER_START\n$HEADER_CONTENT\n$HEADER_END/;ty;P;D;:y}}"
+  if [[ -z $generatedHeaderFound ]]; then
+    echo "header not found"
+#    sed -i "s/@startuml/@startuml\n$BEGIN_HEADER\n$END_HEADER\n/g" "$file"
+  fi
+
+  filepath=$(echo "$file" | cut -d. -f2 | sed -e "s/\//\\\\\//g")
+  HEADER_CONTENT="header \@nghinhut\nfooter https\:\/\/gitlab\.com\/nghinhut\/docs\/raw\/$(git rev-parse HEAD)$filepath\.puml"
+#  sed -e '1h;2,$H;$!d;g' -e "s/$BEGIN_HEADER.*$END_HEADER/$BEGIN_HEADER\n$HEADER_CONTENT\n$END_HEADER/g"
+#  sed "/^$BEGIN_HEADER$/{$!{N;s/^$BEGIN_HEADER\n.*$END_HEADER\$/$BEGIN_HEADER\n$HEADER_NOTIFY\n$HEADER_CONTENT\n$END_HEADER/;ty;P;D;:y}}"
+#  perl -i -p0e "s/$BEGIN_HEADER.*?$END_HEADER/$BEGIN_HEADER\n$HEADER_NOTIFY\n$HEADER_CONTENT\n$END_HEADER/igs" "$file"
+  sed -i "s/@startuml/@startuml\n$BEGIN_HEADER\n$HEADER_NOTIFY\n$HEADER_CONTENT\n$END_HEADER/g" "$file"
 }
 
 for file in $FILES; do
