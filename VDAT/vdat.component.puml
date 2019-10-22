@@ -2,7 +2,7 @@
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
 header [[mailto:nghinhut@gmail.com @nghinhut]]
-footer [[https://gitlab.com/nghinhut/docs/raw/9bc3a895ef09f5f921313c9bc6e8dc60f43da5dc/VDAT/vdat.puml]]
+footer [[https://gitlab.com/nghinhut/docs/raw/9a2e8686480b830e41685e67b4723885d98ce90f/VDAT/vdat.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
 package "IAM" {
