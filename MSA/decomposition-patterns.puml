@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header @nghinhut
-footer https://gitlab.com/nghinhut/docs/raw/9688f34d89be35b55ae664523133555104b4bd3b/MSA/decomposition-patterns.puml
+header [[mailto:nghinhut@gmail.com @nghinhut]]
+footer https://gitlab.com/nghinhut/docs/raw/ebe2eb4d3e6f77b666650176f6769814bcb16971/MSA/decomposition-patterns.puml
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
 rectangle "Decomposition Patterns" as Decomposition #green
