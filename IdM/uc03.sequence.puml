@@ -56,9 +56,9 @@ loop for each attribute in user's attributes
         ref over idm, es
             Encrypt user's attribute by [[$BASE_URL/encryption.function.puml Encryption($attribute)]]
         end
-    end
 
-    idm -> idm : user.setAttribute($attribute.key, $attribute.value //<encrypted>//)
+        idm -> idm : user.setAttribute($attribute.key, $attribute.value //<encrypted>//)
+    end
 end
 
 
