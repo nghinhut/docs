@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F3978715f673b335c649b2ed17406b18c08f6cbc7%5C%2FIdM%5C%2Fuse-case%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/3978715f673b335c649b2ed17406b18c08f6cbc7/IdM/use-case.puml https://gitlab.com/nghinhut/docs/blob/3978715f673b335c649b2ed17406b18c08f6cbc7/IdM/use-case.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F1be254a5ba210d30d0866970302dd85f3e8c29ef%5C%2FIdM%5C%2Fuse-case%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/1be254a5ba210d30d0866970302dd85f3e8c29ef/IdM/use-case.puml https://gitlab.com/nghinhut/docs/blob/1be254a5ba210d30d0866970302dd85f3e8c29ef/IdM/use-case.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
 !$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
