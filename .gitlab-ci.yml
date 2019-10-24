@@ -1,0 +1,32 @@
+image: alpine:latest
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - release
+
+build:
+  stage: build
+  image: openjdk:8
+  script:
+    - apt-get update && apt-get install -qy --no-install-recommends openjdk-8-jdk graphviz
+    - scripts/build.sh
+  artifacts:
+    paths:
+      - dist
+
+release:
+  stage: release
+  image: node:10-alpine
+  dependencies:
+    - build
+  script:
+    - apk update && apk add git
+    - npx semantic-release -r git@gitlab.com:nghinhut/docs.git
+  only:
+    refs:
+      - master
+  when: manual
