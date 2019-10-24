@@ -13,7 +13,7 @@ build:
   image: openjdk:8
   script:
     - apt-get update -qq && apt-get install -qqy --no-install-recommends openjdk-8-jdk graphviz
-    - scripts/build.sh
+    - ./.scripts/build.sh
   artifacts:
     paths:
       - dist
