@@ -25,7 +25,8 @@ release:
     - build
   script:
     - apk update && apk add git
-    - npx semantic-release -r git@gitlab.com:nghinhut/docs.git
+    - npm install -g semantic-release @semantic-release/gitlab
+    - semantic-release -r git@gitlab.com:nghinhut/docs.git
   only:
     refs:
       - master
