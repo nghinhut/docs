@@ -17,6 +17,7 @@ build:
   artifacts:
     paths:
       - dist
+      - artifacts.zip
 
 release:
   stage: release
