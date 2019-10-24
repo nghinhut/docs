@@ -1,0 +1,82 @@
+@startuml
+title UMA2 Token Introspection
+
+participant "client" as client
+participant "resource server" as rs
+participant "authorization server " as as
+
+activate client
+client ->> rs : Request resource with access token (RPT)
+activate rs
+
+== Token Introspection ==
+alt using JWT public key
+    rs -> rs : jwt.verify($token)
+    note right
+        {
+           "active":true,
+           "exp":1256953732,
+           "iat":1256912345,
+           "permissions":[
+              {
+                 "resource_id":"112210f47de98100",
+                 "resource_scopes":[
+                    "view",
+                    "http://photoz.example.com/dev/actions/print"
+                 ],
+                 "exp":1256953732
+              }
+           ]
+        }
+    end note
+else using PROTECTION API: Introspection endpoint
+    rs ->> as : introspect RPT
+    note left
+        POST /introspect HTTP/1.1
+        Host: as.example.com
+        Authorization: Bearer 204c69636b6c69
+        ...
+        token=sbjsbhs(/SSJHBSUSSJHVhjsgvhsgvshgsv
+        }
+    end note
+    activate as
+    rs <<-- as : return object
+    note right
+        HTTP/1.1 200 OK
+        Content-Type: application/json
+        Cache-Control: no-store
+        ...
+
+        {
+           "active":true,
+           "exp":1256953732,
+           "iat":1256912345,
+           "permissions":[
+              {
+                 "resource_id":"112210f47de98100",
+                 "resource_scopes":[
+                    "view",
+                    "http://photoz.example.com/dev/actions/print"
+                 ],
+                 "exp":1256953732
+              }
+           ]
+        }
+    end note
+    deactivate as
+end
+
+== Access Control ==
+
+ref over rs
+    Access Control
+end
+
+alt access granted
+    client <<-- rs : Protected resource
+else access denied
+    client <<-- rs : permission denied response with permission ticket
+end
+deactivate rs
+deactivate client
+@enduml
