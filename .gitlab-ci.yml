@@ -18,6 +18,10 @@ build:
     paths:
       - dist
       - artifacts.zip
+  only:
+    refs:
+      - master
+      - merge_requests
 
 release:
   stage: release
