@@ -6,28 +6,42 @@ cache:
 
 stages:
   - build
+  - deploy
   - release
 
-build:
-  stage: build
+#build:
+#  stage: build
+#  image: openjdk:8
+#  script:
+#    - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
+#    - ./.scripts/build.sh
+#  artifacts:
+#    paths:
+#      - dist
+#      - artifacts.zip
+#  only:
+#    refs:
+#      - master
+#      - merge_requests
+
+pages:
+  stage: deploy
   image: openjdk:8
   script:
     - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
     - ./.scripts/build.sh
   artifacts:
     paths:
-      - dist
+      - public
       - artifacts.zip
   only:
-    refs:
-      - master
-      - merge_requests
+    - master
 
 release:
   stage: release
   image: node:10-alpine
   dependencies:
-    - build
+    - deploy
   script:
     - apk update && apk add git
     - npm install -g semantic-release @semantic-release/gitlab

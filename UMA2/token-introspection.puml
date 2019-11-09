@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2Fbca2d67a787faf185d4d8bfe45e7be42643d6ded%5C%2FUMA2%5C%2Ftoken-introspection%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/bca2d67a787faf185d4d8bfe45e7be42643d6ded/UMA2/token-introspection.puml https://gitlab.com/nghinhut/docs/blob/bca2d67a787faf185d4d8bfe45e7be42643d6ded/UMA2/token-introspection.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F22b5983c8d4b2da343c7c84db55389cb60c718ac%5C%2FUMA2%5C%2Ftoken-introspection%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/22b5983c8d4b2da343c7c84db55389cb60c718ac/UMA2/token-introspection.puml https://gitlab.com/nghinhut/docs/blob/22b5983c8d4b2da343c7c84db55389cb60c718ac/UMA2/token-introspection.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title UMA2 Token Introspection
 

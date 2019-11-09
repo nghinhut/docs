@@ -1,0 +1,16 @@
+baseURL: "https://www.nghinhut.dev/assets"
+author:
+  name: "Nghi L. M. Nhựt"
+  email: "nghinhut@gmail.com"
+module:
+  hugoVersion:
+    extended: false
+    min: "0.55.0"
+disableKinds:
+  - taxonomy
+  - taxonomyTerm
+outputs:
+  section:
+    - JSON
+    - AMP
+pygmentsCodeFences: true
