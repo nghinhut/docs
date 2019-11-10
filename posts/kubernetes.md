@@ -6,7 +6,7 @@ image: "/assets/img/1200px-Kubernetes_logo_without_workmark.svg.png"
 author: "nghinhut@gmail.com (Nghi L. M. Nhựt)"
 categories: "Deployment"
 tags: "kubernetes,devops"
-draft: true
+draft: false
 ---
 
 **Insert Lead paragraph here.**
