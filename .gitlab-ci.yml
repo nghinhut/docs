@@ -29,7 +29,7 @@ pages:
   image: openjdk:8
   script:
     - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
-    - ./.scripts/build.sh
+    - ./scripts/build.sh
   artifacts:
     paths:
       - public

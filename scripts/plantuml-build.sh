@@ -2,7 +2,7 @@
 
 ## Configuration
 OUTPUT_DIR=${1:-dist}
-PLANTUML=.scripts/plantuml.1.2019.11.jar
+PLANTUML=scripts/plantuml.1.2019.11.jar
 SOURCES_FILES=$(find "$OUTPUT_DIR" -iname '*.puml' | grep -v static)
 
 ## Build

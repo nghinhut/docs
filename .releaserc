@@ -5,6 +5,6 @@ plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
   - - "@semantic-release/gitlab"
-    - assets:
-        - path: artifacts.zip
-          label: artifacts
+#    - assets:
+#        - path: artifacts.zip
+#          label: artifacts
