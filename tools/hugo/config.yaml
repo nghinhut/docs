@@ -9,9 +9,5 @@ module:
 disableKinds:
   - taxonomy
   - taxonomyTerm
-outputs:
-  section:
-    - JSON
-    - AMP
 pygmentsCodeFences: true
 canonifyurls: true
