@@ -7,9 +7,7 @@ footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/n
 title Update User (UMA2 Protected)
 !pragma teoz true
 
-!$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
-!$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
-!$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
+!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
 
 participant "Client" as client
 participant "IdM Service" as idm
@@ -21,7 +19,7 @@ participant "Encryption Service" as es
 == Authorization ==
 activate client
 ref over client, idm, as
-    [[$BASE_URL/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
+    [[$BASE_URL/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
 end
 
 {start_d1} client ->> idm : request update user 197 with access token (RPT)
@@ -48,7 +46,7 @@ idm -> idm : policyEnforce()
 
 == Updating ==
 ref over idm
-    [[$BASE_URL/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
+    [[$BASE_URL/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
 end
 
 loop for each attribute in user's attributes

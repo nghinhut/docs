@@ -6,14 +6,14 @@ footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/n
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title Microservices Architecture
 
-!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master/MSA"
+!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
 
 rectangle "<b>Microservices Architecture" as msa #green
 
 rectangle "[[# Definition]]" as definition #yellow
-rectangle "[[$BASE_URL/msa-goals.puml Goals]]" as goals #yellow
-rectangle "[[$BASE_URL/msa-properties.puml Properties]]" as properties #yellow
-rectangle "[[$BASE_URL/msa-design-patterns.puml Design Patterns]]" as design_patterns #yellow
+rectangle "[[$BASE_URL/MSA/msa-goals.puml Goals]]" as goals #yellow
+rectangle "[[$BASE_URL/MSA/msa-properties.puml Properties]]" as properties #yellow
+rectangle "[[$BASE_URL/MSA/msa-design-patterns.puml Design Patterns]]" as design_patterns #yellow
 
 definition -- msa
 goals -- msa

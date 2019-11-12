@@ -5,9 +5,7 @@ header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.
 footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/6e6cb57e2df8282c56b23193544a11451d2a5ccb/IdM/uc02.puml https://gitlab.com/nghinhut/docs/blob/6e6cb57e2df8282c56b23193544a11451d2a5ccb/IdM/uc02.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title List Users Stream
-!$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
-!$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
-!$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
+!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
 
 participant "Client" as client
 participant "IdM Service" as idm
@@ -16,20 +14,20 @@ participant "UMA2 Authorization Server" as as
 participant "Encryption Service" as es
 
 ref over client, idm, as
-    [[$BASE_URL/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
+    [[$BASE_URL/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
 end
 
 client ->> idm : list users
 activate idm
     ref over idm
-        [[$BASE_URL/query-encrypted-users.function.puml Query Encrypted Users]] with empty query
+        [[$BASE_URL/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with empty query
     end
 
     loop for each user in users <//encrypted//>
         idm -> idm : userMsg = new idmGrpc.User()     // proto message
         loop for each attribute in user's attributes
             ref over idm, es
-                Decrypt user's attribute by [[$BASE_URL/decryption.function.puml{} Decryption(attribute)]]
+                Decrypt user's attribute by [[$BASE_URL/IdM/decryption.function.puml{} Decryption(attribute)]]
             end
 
             idm -> idm : userMsg.set(attribute //<decrypted>//, value)

@@ -5,9 +5,7 @@ header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.
 footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/6e6cb57e2df8282c56b23193544a11451d2a5ccb/IdM/uc01.puml https://gitlab.com/nghinhut/docs/blob/6e6cb57e2df8282c56b23193544a11451d2a5ccb/IdM/uc01.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
-!$REPO_URL = "https://gitlab.com/nghinhut/docs/raw/master/IdM"
-!$PLANTUML_PROXY_URL = "http://www.plantuml.com/plantuml/proxy"
-!$BASE_URL = $PLANTUML_PROXY_URL + "?fmt=svg&src=" + $REPO_URL
+!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
 title Create A New User (UMA2 Protected)
 !pragma teoz true
 
@@ -57,13 +55,13 @@ deactivate idm
 
 loop for each attribute in user's attributes
     ref over idm, es
-        Encrypt user's attribute by [[$BASE_URL/encryption.function.puml Encryption($attribute)]]
+        Encrypt user's attribute by [[$BASE_URL/IdM/encryption.function.puml Encryption($attribute)]]
     end
 end
 
 
 idm -> db : save()
-    db -> db : INSERT ... INTO "[[$BASE_URL/class.puml Users]]";
+    db -> db : INSERT ... INTO "[[$BASE_URL/IdM/class.puml Users]]";
 idm <-- db : result
 
 {end_d1} client <<-- idm : return success response (empty body)
@@ -76,7 +74,7 @@ activate idm
         idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
     end
     idm -> db : updateBlindIndex()
-        db -> db : INSERT ... INTO "[[$BASE_URL/class.puml UsersFilters]]"
+        db -> db : INSERT ... INTO "[[$BASE_URL/IdM/class.puml UsersFilters]]"
     idm <<-- db
 deactivate idm
 deactivate idm
