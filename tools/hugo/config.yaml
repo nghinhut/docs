@@ -1,4 +1,4 @@
-baseURL: "https://www.nghinhut.dev/assets"
+baseURL: "https://www.nghinhut.dev"
 author:
   name: "Nghi L. M. Nhựt"
   email: "nghinhut@gmail.com"
@@ -14,3 +14,4 @@ outputs:
     - JSON
     - AMP
 pygmentsCodeFences: true
+canonifyurls: true

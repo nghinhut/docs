@@ -9,7 +9,7 @@
       "author": "{{ .Site.Author.email }} ({{ .Site.Author.name }})",
       "guid": "{{ .Permalink }}",
       "tags": "{{ .Params.tags }}",
-      "image": "{{ .Params.image }}"
+      "image": "{{ .Site.BaseURL }}{{ .Params.image }}"
     }{{ if ne (add $i 1) $len }},{{ end }}
    {{ end }}
   ]
