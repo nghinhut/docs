@@ -11,16 +11,7 @@ disableKinds:
   - taxonomyTerm
 pygmentsCodeFences: true
 canonifyurls: true
-mediaTypes:
-  text/plain:
-    suffixes:
-      - puml
-outputFormats:
-  puml:
-    isPlainText: true
-    mediaType: text/plain
 outputs:
   section:
     - HTML
     - JSON
-    - puml
