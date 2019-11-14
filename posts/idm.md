@@ -20,7 +20,7 @@ It addresses the need to ensure appropriate access to resources across increasin
 
 <br /><br /><br />
 
-![](/assets/docs/IdM/idm.png)
+![](/IdM/idm.png)
 
 <br /><br /><br />
 ## Key Features
@@ -38,7 +38,7 @@ It addresses the need to ensure appropriate access to resources across increasin
 <br /><br /><br />
 ## Business Features
 ### Create User
-![](/assets/docs/IdM/uc01.sequence.png)
+![](/IdM/uc01.sequence.png)
 
 <br /><br /><br />
 ## Searching problem
