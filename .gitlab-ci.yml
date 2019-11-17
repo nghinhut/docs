@@ -39,8 +39,6 @@ pages:
 release:
   stage: release
   image: node:10-alpine
-  dependencies:
-    - pages
   script:
     - apk update && apk add git
     - npm install -g semantic-release @semantic-release/gitlab
@@ -48,3 +46,4 @@ release:
   only:
     refs:
       - master
+    - schedules
