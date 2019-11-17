@@ -46,4 +46,4 @@ release:
   only:
     refs:
       - master
-    - schedules
+      - schedules
