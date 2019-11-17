@@ -26,6 +26,7 @@ pages:
   dependencies:
     - plantuml
   script:
+    - wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm artifacts.zip
     - export HUGO_BASEURL=$CI_PAGES_URL
     - ./scripts/hugo-build.sh
   artifacts:
