@@ -5,16 +5,16 @@
 ---
 
 # Microservices
-![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/MSA/msa.puml)
+![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/MSA/msa.puml)
 
 # UMA2
-![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/UMA2/uma2-grant.puml)
+![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/UMA2/uma2-grant.puml)
 
 # IdM
-![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/IdM/idm.puml)
+![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/IdM/idm.puml)
 
 ## Use cases
-![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/IdM/use-case.puml)
+![](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/master/plantuml/IdM/use-case.puml)
 
 <!-- Image Links -->
 [www.plantuml.com]: http://www.plantuml.com/plantuml/proxy?src=

@@ -15,7 +15,7 @@ draft: false
 
 <br /><br />
 
-{{< figure src="/MSA/msa.png" link="/MSA/msa.svg" target="_blank" alt="..." >}}
+{{< figure src="/plantuml/MSA/msa.png" link="/plantuml/MSA/msa.svg" target="_blank" alt="..." >}}
 
 <br /><br /><br />
 ## Definition
