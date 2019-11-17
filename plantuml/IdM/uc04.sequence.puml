@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F3df1026eaf1d4235a96f975a9ee7f56338654bdb%5C%2Fplantuml%5C%2FIdM%5C%2Fuc04%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/3df1026eaf1d4235a96f975a9ee7f56338654bdb/plantuml/IdM/uc04.puml https://gitlab.com/nghinhut/docs/blob/3df1026eaf1d4235a96f975a9ee7f56338654bdb/plantuml/IdM/uc04.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F9afacf787796dfb7c1260b818c0c61e3649fc73f%5C%2Fplantuml%5C%2FIdM%5C%2Fuc04%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/9afacf787796dfb7c1260b818c0c61e3649fc73f/plantuml/IdM/uc04.puml https://gitlab.com/nghinhut/docs/blob/9afacf787796dfb7c1260b818c0c61e3649fc73f/plantuml/IdM/uc04.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title Delete User (UMA2 Protected)
 
