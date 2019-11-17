@@ -20,7 +20,7 @@ plantuml:
       - public
   only:
     changes:
-      - '*.puml'
+      - "**/*.puml"
 
 pages:
   stage: deploy
