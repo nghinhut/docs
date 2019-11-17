@@ -27,7 +27,7 @@ pages:
     - plantuml
   script:
     - apk add bash
-    - '[[ ! -d "public/" ]] && set +e && wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm -f artifacts.zip && set -e'
+    - '[[ ! -d "public/" ]] && (set +e && wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm -f artifacts.zip && set -e)'
     - export HUGO_BASEURL=$CI_PAGES_URL
     - cat ./scripts/hugo-build.sh | bash
   artifacts:
