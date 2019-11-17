@@ -8,10 +8,6 @@ stages:
 plantuml:
   stage: build
   image: openjdk:8
-  cache:
-    key: "$CI_BUILD_REF_NAME"
-    paths:
-      - public
   script:
     - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
     - ./scripts/plantuml-build.sh
@@ -37,7 +33,6 @@ pages:
     - apk add bash
 #    - '[[ ! -d "public/" ]] && (set +e && wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm -f artifacts.zip && set -e)'
     - export HUGO_BASEURL=$CI_PAGES_URL
-#    - ./scripts/hugo-build.sh
     - cat ./scripts/hugo-build.sh | bash
   artifacts:
     paths:
