@@ -1,7 +1,8 @@
+#!/usr/bin/env bash
 ## Cleanup all files in public/ but keep some.
 shopt -s extglob
 mkdir -p public
-cd public && rm -vr !(plantuml|LICENSE|README.md) && cd ..
+cd public && rm -vrf !(plantuml|LICENSE|README.md) && cd ..
 
 
 ## Hugo build
