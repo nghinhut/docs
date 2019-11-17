@@ -1,0 +1,24 @@
+@startuml
+'-----START auto generated metadata please keep comment here to allow auto update-----
+'-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df%5C%2Fplantuml%5C%2FMSA%5C%2Fintegration-patterns%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df/plantuml/MSA/integration-patterns.puml https://gitlab.com/nghinhut/docs/blob/2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df/plantuml/MSA/integration-patterns.puml]]
+'-----END auto generated metadata please keep comment here to allow auto update-----
+
+rectangle "Integration Patterns" as Integration #green
+
+rectangle "API Gateway Pattern" as IntegrationP1
+rectangle "Aggregator Pattern" as IntegrationP2
+rectangle "Proxy Pattern" as IntegrationP3
+rectangle "Gateway Routing Pattern" as IntegrationP4
+rectangle "Chained Microservice Pattern" as IntegrationP5
+rectangle "Branch Pattern" as IntegrationP6
+rectangle "Client-Side UI Composition Pattern" as IntegrationP7
+Integration --- IntegrationP1
+Integration --- IntegrationP2
+Integration --- IntegrationP3
+Integration --- IntegrationP4
+Integration --- IntegrationP5
+Integration --- IntegrationP6
+Integration --- IntegrationP7
+@enduml

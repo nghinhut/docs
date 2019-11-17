@@ -1,0 +1,60 @@
+@startuml
+'-----START auto generated metadata please keep comment here to allow auto update-----
+'-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df%5C%2Fplantuml%5C%2FIdM%5C%2Fuc04%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df/plantuml/IdM/uc04.puml https://gitlab.com/nghinhut/docs/blob/2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df/plantuml/IdM/uc04.puml]]
+'-----END auto generated metadata please keep comment here to allow auto update-----
+title Delete User (UMA2 Protected)
+
+!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
+
+participant "Client" as client
+participant "IdM Service" as idm
+participant "IdM Database" as db
+participant "UMA2 Authorization Server" as as
+
+
+== Authorization ==
+activate client
+ref over client, idm, as
+    [[$BASE_URL/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
+end
+
+{start_d1} client ->> idm : request delete user 197 with access token (RPT)
+note left
+    DELETE /users/197
+end note
+
+activate idm
+idm -> idm : tokenIntrospect()
+activate idm
+    opt for additional validation\n(offer better security but increases request duration
+        ref over idm, as
+            Introspect token with Authz Server
+        end
+    end
+deactivate idm
+
+idm -> idm : policyEnforce()
+
+
+== Deleting ==
+alt SOFT_DELETE_ENABLED = true
+    idm ->> db : UPDATE Users SET deletedAt = now() WHERE id = 197;
+else SOFT_DELETE_ENABLED = false
+    idm ->> db : DELETE Users WHERE id = 197
+end
+idm <<-- db : result
+
+client <<-- idm : response (empty body)
+deactivate client
+
+
+== Delete Blind Index ==
+opt SOFT_DELETE_ENABLED && DELETE_BIND_INDEX_ENABLED
+    idm -> db : DELETE * FROM UserFilter WHERE UserId = 197
+    idm <-- db : result
+end
+
+deactivate idm
+@enduml

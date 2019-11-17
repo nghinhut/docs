@@ -20,7 +20,7 @@ It addresses the need to ensure appropriate access to resources across increasin
 
 <br /><br /><br />
 
-![](/IdM/idm.png)
+![](/plantuml/IdM/idm.png)
 
 <br /><br /><br />
 ## Key Features
@@ -38,7 +38,7 @@ It addresses the need to ensure appropriate access to resources across increasin
 <br /><br /><br />
 ## Business Features
 ### Create User
-![](/IdM/uc01.sequence.png)
+![](/plantuml/IdM/uc01.sequence.png)
 
 <br /><br /><br />
 ## Searching problem
@@ -52,7 +52,7 @@ This is the best approach I can find, for now.
 
 
 #### Query blind index table
-![](assets/docs/IdM/query-encrypted-users.function.png)
+![](/plantuml/IdM/query-encrypted-users.function.png)
 
 
 <br /><br /><br />

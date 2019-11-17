@@ -22,15 +22,15 @@ draft: false
 
 <br /><br />
 ## Goals
-![](/MSA/msa-goals.png)
+![](/plantuml/MSA/msa-goals.png)
 
 <br /><br />
 ## Architecture's Properties
-![](/MSA/msa-properties.png)
+![](/plantuml/MSA/msa-properties.png)
 
 <br /><br />
 ## Design Patterns for Microservices
-![](/MSA/msa-design-patterns.png)
+![](/plantuml/MSA/msa-design-patterns.png)
 
 <br /><br />
 ### References

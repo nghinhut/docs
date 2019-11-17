@@ -5,7 +5,7 @@ shopt -s extglob
 
 rm -rf dist/
 mkdir -p dist/
-cp -r !(dist|*.zip|posts|assets|scripts|tools) dist
+cp -r !(dist|*.zip|posts|assets|scripts|web|protos) dist
 ./scripts/plantuml-build.sh
 
 # Create artifacts.zip file contains all compiled images

@@ -1,0 +1,86 @@
+@startuml
+'-----START auto generated metadata please keep comment here to allow auto update-----
+'-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df%5C%2Fplantuml%5C%2FIdM%5C%2Fuc03%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df/plantuml/IdM/uc03.puml https://gitlab.com/nghinhut/docs/blob/2e9fc30c66c1d3614c85e0e8f6b5a0a12f8726df/plantuml/IdM/uc03.puml]]
+'-----END auto generated metadata please keep comment here to allow auto update-----
+title Update User (UMA2 Protected)
+!pragma teoz true
+
+!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
+
+participant "Client" as client
+participant "IdM Service" as idm
+participant "IdM Database" as db
+participant "UMA2 Authorization Server" as as
+participant "Encryption Service" as es
+
+
+== Authorization ==
+activate client
+ref over client, idm, as
+    [[$BASE_URL/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
+end
+
+{start_d1} client ->> idm : request update user 197 with access token (RPT)
+note left
+    userId: 197
+    {
+        ..
+    }
+end note
+
+activate idm
+idm -> idm : tokenIntrospect()
+activate idm
+    opt for additional validation\n(offer better security but increases request duration
+        ref over idm, as
+            Introspect token with Authz Server
+        end
+    end
+deactivate idm
+
+
+idm -> idm : policyEnforce()
+
+
+== Updating ==
+ref over idm
+    [[$BASE_URL/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
+end
+
+loop for each attribute in user's attributes
+    idm -> idm : attributeChangesDetection()    // compare HMACs
+    opt attribute is changes
+        ref over idm, es
+            Encrypt user's attribute by [[$BASE_URL/encryption.function.puml Encryption($attribute)]]
+        end
+
+        idm -> idm : user.setAttribute($attribute.key, $attribute.value //<encrypted>//)
+    end
+end
+
+idm <<-- es
+deactivate es
+
+idm -> db : save()
+idm <-- db : result
+
+{end_d1} client <<-- idm : return success response (empty body)
+deactivate client
+
+
+== Update Blind Index ==
+idm -> idm : createBlindIndex()
+    loop for each attribute in ['username', 'email', 'first_name', 'last_name']
+        idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
+    end
+    idm -> db : updateBlindIndex()
+        db -> db : INSERT ... INTO "[[$BASE_URL/class.puml UsersFilters]]"
+    idm <<-- db
+deactivate idm
+
+
+'Duration Constrains
+{start_d1} <-> {end_d1} : <5s
+@enduml
