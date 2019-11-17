@@ -7,12 +7,13 @@ rm -rf dist/
 mkdir -p dist/
 cp -r !(dist|*.zip|posts|assets|scripts|tools) dist
 ./scripts/plantuml-build.sh
-rm -f artifacts.zip
-cd dist/ && zip -r ../artifacts.zip ./* && cd - || exit
+
+# Create artifacts.zip file contains all compiled images
+#rm -f artifacts.zip
+#cd dist/ && zip -r ../artifacts.zip ./* && cd - || exit
 
 HUGO=$PWD/scripts/hugo_0.59.0
 rm -rf ./public
-cd ./tools/hugo && $HUGO && cd - || exit
-cp -rT dist/ tools/hugo/public/
-cp -R assets/ tools/hugo/public/
-mv tools/hugo/public public
+$HUGO
+cp -rT dist/ ./public/
+cp -R assets/ ./public/

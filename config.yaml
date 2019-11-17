@@ -1,0 +1,36 @@
+# Main config settings
+baseURL: "https://www.nghinhut.dev"
+author:
+  name: "Nghi L. M. Nhựt"
+  email: "nghinhut@gmail.com"
+module:
+  hugoVersion:
+    extended: false
+    min: "0.56.0"
+  mounts:
+    - source: web/content
+      target: content
+    - source: web/layouts
+      target: layouts
+    - source: posts
+      target: content/posts
+    - source: assets
+      target: assets
+    - source: web/i18n
+      target: i18n
+    - source: web/archetypes
+      target: archetypes
+disableKinds:
+  - taxonomy
+  - taxonomyTerm
+pygmentsCodeFences: true
+canonifyurls: true
+outputs:
+  section:
+    - HTML
+    - JSON
+enableGitInfo: true
+
+# Other configurations
+
+

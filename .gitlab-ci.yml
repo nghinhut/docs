@@ -34,7 +34,6 @@ pages:
   artifacts:
     paths:
       - public
-      - artifacts.zip
   only:
     - master
 
@@ -50,4 +49,3 @@ release:
   only:
     refs:
       - master
-#  when: manual

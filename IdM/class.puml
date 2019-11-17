@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F6e6cb57e2df8282c56b23193544a11451d2a5ccb%5C%2FIdM%5C%2Fclass%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/6e6cb57e2df8282c56b23193544a11451d2a5ccb/IdM/class.puml https://gitlab.com/nghinhut/docs/blob/6e6cb57e2df8282c56b23193544a11451d2a5ccb/IdM/class.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2Fc46ad9c00ef7b2feec3a29a383ecf5c7a5e6ee35%5C%2FIdM%5C%2Fclass%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/c46ad9c00ef7b2feec3a29a383ecf5c7a5e6ee35/IdM/class.puml https://gitlab.com/nghinhut/docs/blob/c46ad9c00ef7b2feec3a29a383ecf5c7a5e6ee35/IdM/class.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title IdM Classes
 
