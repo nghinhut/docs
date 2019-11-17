@@ -47,5 +47,4 @@ release:
     - npm install -g semantic-release @semantic-release/gitlab
     - semantic-release -r git@gitlab.com:nghinhut/docs.git
   only:
-    - master
     - schedules
