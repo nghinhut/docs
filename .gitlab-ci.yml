@@ -24,7 +24,9 @@ plantuml:
 
 pages:
   stage: deploy
-  image: openjdk:8
+  image:
+    name: alpine/git:latest
+    entrypoint: [""]
   dependencies:
     - plantuml
   script:
