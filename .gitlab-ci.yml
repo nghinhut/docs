@@ -11,6 +11,7 @@ plantuml:
   script:
     - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
     - ./scripts/plantuml-build.sh
+  interruptible: true
   artifacts:
     paths:
       - public
@@ -35,6 +36,7 @@ pages:
 #    - '[[ ! -d "public/" ]] && (set +e && wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm -f artifacts.zip && set -e)'
     - export HUGO_BASEURL=$CI_PAGES_URL
     - cat ./scripts/hugo-build.sh | bash
+  interruptible: true
   artifacts:
     paths:
       - public
