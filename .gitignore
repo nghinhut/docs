@@ -10,5 +10,3 @@ resources/
 *.iml
 out
 gen
-dist/
-artifacts.zip
