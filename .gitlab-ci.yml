@@ -1,9 +1,5 @@
 image: alpine:latest
 
-cache:
-  paths:
-    - node_modules/
-
 stages:
   - build
   - deploy
@@ -41,6 +37,9 @@ pages:
 release:
   stage: release
   image: node:10-alpine
+  cache:
+    paths:
+      - node_modules/
   script:
     - apk update && apk add git
     - npm install -g semantic-release @semantic-release/gitlab
