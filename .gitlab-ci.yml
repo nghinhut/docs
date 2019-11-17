@@ -9,28 +9,30 @@ stages:
   - deploy
   - release
 
-#build:
-#  stage: build
-#  image: openjdk:8
-#  script:
-#    - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
-#    - ./.scripts/build.sh
-#  artifacts:
-#    paths:
-#      - dist
-#      - artifacts.zip
-#  only:
-#    refs:
-#      - master
-#      - merge_requests
+plantuml:
+  stage: build
+  image: openjdk:8
+  script:
+    - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
+    - ./.scripts/plantuml-build.sh
+  artifacts:
+    paths:
+      - public
+  only:
+    refs:
+      - master
+      - merge_requests
+    changes:
+      - '*.puml'
 
 pages:
   stage: deploy
   image: openjdk:8
+  dependencies:
+    - build
   script:
     - export HUGO_BASEURL=$CI_PAGES_URL
-    - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
-    - ./scripts/build.sh
+    - ./scripts/hugo-build.sh
   artifacts:
     paths:
       - public

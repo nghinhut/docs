@@ -1,3 +1,4 @@
+## Automatically update all plantuml files (*.puml) in all directories
 
 FILES=$(find -type f -name "*.puml")
 BEGIN_HEADER="'-----START auto generated metadata please keep comment here to allow auto update-----"

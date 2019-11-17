@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 
+shopt -s extglob
+
 ## Configuration
-OUTPUT_DIR=${1:-dist}
+OUTPUT_DIR=${1:-public}
 PLANTUML=scripts/plantuml.1.2019.11.jar
 SOURCES_FILES=$(find "$OUTPUT_DIR" -iname '*.puml' | grep -v static)
+
+
+## Pre-build
+./scripts/plantuml-header-patcher.sh
+
+### Prepare public/
+rm -rf "$OUTPUT_DIR"
+mkdir -p "$OUTPUT_DIR"
+cp -r !(public|*.zip|posts|assets|scripts|web|protos) "$OUTPUT_DIR"
 
 ## Build
 for file in ${SOURCES_FILES}; do
