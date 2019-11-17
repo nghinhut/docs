@@ -30,6 +30,7 @@ pages:
     paths:
       - public
   script:
+    - '[[ ! -d "public/" ]] && exit 1' # If no public/ then exit error because the site need plantuml to be compiled before deploy
     - apk add bash
 #    - '[[ ! -d "public/" ]] && (set +e && wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm -f artifacts.zip && set -e)'
     - export HUGO_BASEURL=$CI_PAGES_URL
