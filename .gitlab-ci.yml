@@ -19,9 +19,6 @@ plantuml:
     paths:
       - public
   only:
-    refs:
-      - master
-      - merge_requests
     changes:
       - '*.puml'
 
