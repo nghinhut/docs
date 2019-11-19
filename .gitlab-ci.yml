@@ -5,9 +5,18 @@ stages:
   - deploy
   - release
 
+plantuml-cache:
+  extends: plantuml
+  before_script:
+    - [[ -d public ]] && exit 0
+  only: []
+  except:
+    changes:
+      - "**/*.puml"
+
 plantuml:
   stage: build
-  image: openjdk:8
+  image: ubuntu:18.04
   script:
     - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
     - ./scripts/plantuml-build.sh
