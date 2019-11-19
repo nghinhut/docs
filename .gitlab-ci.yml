@@ -19,13 +19,14 @@ plantuml-cache:
 plantuml:
   stage: build
   image: ubuntu:18.04
+  cache:
+    key: "$CI_BUILD_REF_NAME"
+    paths:
+      - public
   script:
     - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
     - ./scripts/plantuml-build.sh
   interruptible: true
-  artifacts:
-    paths:
-      - public
   only:
     changes:
       - "**/*.puml"
@@ -37,8 +38,6 @@ pages:
   image:
     name: alpine/git:latest
     entrypoint: [""]
-  dependencies:
-    - plantuml
   cache:
     key: "$CI_BUILD_REF_NAME"
     paths:
