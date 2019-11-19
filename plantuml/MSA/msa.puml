@@ -11,9 +11,9 @@ title Microservices Architecture
 rectangle "<b>Microservices Architecture" as msa #green
 
 rectangle "[[# Definition]]" as definition #yellow
-rectangle "[[$BASE_URL/MSA/msa-goals.puml Goals]]" as goals #yellow
-rectangle "[[$BASE_URL/MSA/msa-properties.puml Properties]]" as properties #yellow
-rectangle "[[$BASE_URL/MSA/msa-design-patterns.puml Design Patterns]]" as design_patterns #yellow
+rectangle "[[$BASE_URL/plantuml/MSA/msa-goals.puml Goals]]" as goals #yellow
+rectangle "[[$BASE_URL/plantuml/MSA/msa-properties.puml Properties]]" as properties #yellow
+rectangle "[[$BASE_URL/plantuml/MSA/msa-design-patterns.puml Design Patterns]]" as design_patterns #yellow
 
 definition -- msa
 goals -- msa

@@ -17,7 +17,7 @@ participant "UMA2 Authorization Server" as as
 == Authorization ==
 activate client
 ref over client, idm, as
-    [[$BASE_URL/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
+    [[$BASE_URL/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
 end
 
 {start_d1} client ->> idm : request delete user 197 with access token (RPT)

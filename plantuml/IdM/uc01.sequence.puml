@@ -55,13 +55,13 @@ deactivate idm
 
 loop for each attribute in user's attributes
     ref over idm, es
-        Encrypt user's attribute by [[$BASE_URL/IdM/encryption.function.puml Encryption($attribute)]]
+        Encrypt user's attribute by [[$BASE_URL/plantuml/IdM/encryption.function.puml Encryption($attribute)]]
     end
 end
 
 
 idm -> db : save()
-    db -> db : INSERT ... INTO "[[$BASE_URL/IdM/class.puml Users]]";
+    db -> db : INSERT ... INTO "[[$BASE_URL/plantuml/IdM/class.puml Users]]";
 idm <-- db : result
 
 {end_d1} client <<-- idm : return success response (empty body)
@@ -74,7 +74,7 @@ activate idm
         idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
     end
     idm -> db : updateBlindIndex()
-        db -> db : INSERT ... INTO "[[$BASE_URL/IdM/class.puml UsersFilters]]"
+        db -> db : INSERT ... INTO "[[$BASE_URL/plantuml/IdM/class.puml UsersFilters]]"
     idm <<-- db
 deactivate idm
 deactivate idm

@@ -14,20 +14,20 @@ participant "UMA2 Authorization Server" as as
 participant "Encryption Service" as es
 
 ref over client, idm, as
-    [[$BASE_URL/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
+    [[$BASE_URL/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
 end
 
 client ->> idm : list users
 activate idm
     ref over idm
-        [[$BASE_URL/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with empty query
+        [[$BASE_URL/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with empty query
     end
 
     loop for each user in users <//encrypted//>
         idm -> idm : userMsg = new idmGrpc.User()     // proto message
         loop for each attribute in user's attributes
             ref over idm, es
-                Decrypt user's attribute by [[$BASE_URL/IdM/decryption.function.puml{} Decryption(attribute)]]
+                Decrypt user's attribute by [[$BASE_URL/plantuml/IdM/decryption.function.puml{} Decryption(attribute)]]
             end
 
             idm -> idm : userMsg.set(attribute //<decrypted>//, value)

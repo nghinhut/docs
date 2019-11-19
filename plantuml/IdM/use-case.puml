@@ -10,10 +10,10 @@ left to right direction
 actor "Client" as client
 actor "Encryption Service" as es
 rectangle IdM {
-    usecase "[[$BASE_URL/IdM/uc01.sequence.puml CreateUser()]]" as UC01
-    usecase "[[$BASE_URL/IdM/uc02.sequence.puml ListUsers()]]" as UC02
-    usecase "[[$BASE_URL/IdM/uc03.sequence.puml UpdateUser()]]" as UC03
-    usecase "[[$BASE_URL/IdM/uc04.sequence.puml DeleteUser()]]" as UC04
+    usecase "[[$BASE_URL/plantuml/IdM/uc01.sequence.puml CreateUser()]]" as UC01
+    usecase "[[$BASE_URL/plantuml/IdM/uc02.sequence.puml ListUsers()]]" as UC02
+    usecase "[[$BASE_URL/plantuml/IdM/uc03.sequence.puml UpdateUser()]]" as UC03
+    usecase "[[$BASE_URL/plantuml/IdM/uc04.sequence.puml DeleteUser()]]" as UC04
 }
 
 

@@ -12,7 +12,7 @@ rectangle "Identity Management" as idm #green
 rectangle "Security Considerations" as security_considerations #yellow
 rectangle "Privacy Considerations" as privacy_considerations #yellow
 rectangle "Goals" as goals #yellow
-rectangle "[[$BASE_URL/IdM/use-case.puml Use cases]]" as use_cases #yellow
+rectangle "[[$BASE_URL/plantuml/IdM/use-case.puml Use cases]]" as use_cases #yellow
 rectangle "Requirements" as requirements #yellow
 rectangle "Functional" as functional_requirements
 rectangle "Non-Functional" as non_functional_requirements

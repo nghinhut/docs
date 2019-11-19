@@ -19,7 +19,7 @@ participant "Encryption Service" as es
 == Authorization ==
 activate client
 ref over client, idm, as
-    [[$BASE_URL/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
+    [[$BASE_URL/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
 end
 
 {start_d1} client ->> idm : request update user 197 with access token (RPT)
@@ -46,14 +46,14 @@ idm -> idm : policyEnforce()
 
 == Updating ==
 ref over idm
-    [[$BASE_URL/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
+    [[$BASE_URL/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
 end
 
 loop for each attribute in user's attributes
     idm -> idm : attributeChangesDetection()    // compare HMACs
     opt attribute is changes
         ref over idm, es
-            Encrypt user's attribute by [[$BASE_URL/encryption.function.puml Encryption($attribute)]]
+            Encrypt user's attribute by [[$BASE_URL/plantuml/encryption.function.puml Encryption($attribute)]]
         end
 
         idm -> idm : user.setAttribute($attribute.key, $attribute.value //<encrypted>//)
@@ -76,7 +76,7 @@ idm -> idm : createBlindIndex()
         idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
     end
     idm -> db : updateBlindIndex()
-        db -> db : INSERT ... INTO "[[$BASE_URL/class.puml UsersFilters]]"
+        db -> db : INSERT ... INTO "[[$BASE_URL/plantuml/class.puml UsersFilters]]"
     idm <<-- db
 deactivate idm
 
