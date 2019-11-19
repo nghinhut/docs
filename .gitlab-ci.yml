@@ -5,6 +5,8 @@ stages:
   - deploy
   - release
 
+
+## PLANTUML
 plantuml-cache:
   extends: plantuml
   before_script:
@@ -28,6 +30,8 @@ plantuml:
     changes:
       - "**/*.puml"
 
+
+## GitLab Pages
 pages:
   stage: deploy
   image:
@@ -52,6 +56,8 @@ pages:
   only:
     - master
 
+
+## RELEASE
 release:
   stage: release
   image: node:10-alpine
