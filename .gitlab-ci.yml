@@ -8,7 +8,7 @@ stages:
 plantuml-cache:
   extends: plantuml
   before_script:
-    - [[ -d public ]] && exit 0
+    - '[[ -d public ]] && exit 0'
   only: []
   except:
     changes:
