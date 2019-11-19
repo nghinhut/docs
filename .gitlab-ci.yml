@@ -7,15 +7,7 @@ stages:
 
 
 ## PLANTUML
-plantuml-cache:
-  extends: plantuml
-  before_script:
-    - '[[ -d public ]] && exit 0'
-  only:
-  except:
-    changes:
-      - "**/*.puml"
-
+### build on changes, then cache artifacts
 plantuml:
   stage: build
   image: ubuntu:18.04
@@ -34,6 +26,15 @@ plantuml:
     changes:
       - "**/*.puml"
 
+### skip build plantuml if cache exist, otherwise run build
+plantuml-ensure-artifact-exists:
+  extends: plantuml
+  before_script:
+    - '[[ -d public ]] && exit 0'
+  only:
+  except:
+    changes:
+      - "**/*.puml"
 
 ## GitLab Pages
 pages:
