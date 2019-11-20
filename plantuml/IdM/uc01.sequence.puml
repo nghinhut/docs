@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F225d1c25d8dd9d23033cf4ff7cccac23f934538b%5C%2Fplantuml%5C%2FIdM%5C%2Fuc01%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/225d1c25d8dd9d23033cf4ff7cccac23f934538b/plantuml/IdM/uc01.puml https://gitlab.com/nghinhut/docs/blob/225d1c25d8dd9d23033cf4ff7cccac23f934538b/plantuml/IdM/uc01.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F595df273fd04da4020ee4d7a2d2891641d82804a%5C%2Fplantuml%5C%2FIdM%5C%2Fuc01%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/595df273fd04da4020ee4d7a2d2891641d82804a/plantuml/IdM/uc01.puml https://gitlab.com/nghinhut/docs/blob/595df273fd04da4020ee4d7a2d2891641d82804a/plantuml/IdM/uc01.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
 !$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
@@ -55,13 +55,13 @@ deactivate idm
 
 loop for each attribute in user's attributes
     ref over idm, es
-        Encrypt user's attribute by [[$BASE_URL/IdM/encryption.function.puml Encryption($attribute)]]
+        Encrypt user's attribute by [[$BASE_URL/plantuml/IdM/encryption.function.puml Encryption($attribute)]]
     end
 end
 
 
 idm -> db : save()
-    db -> db : INSERT ... INTO "[[$BASE_URL/IdM/class.puml Users]]";
+    db -> db : INSERT ... INTO "[[$BASE_URL/plantuml/IdM/class.puml Users]]";
 idm <-- db : result
 
 {end_d1} client <<-- idm : return success response (empty body)
@@ -74,7 +74,7 @@ activate idm
         idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
     end
     idm -> db : updateBlindIndex()
-        db -> db : INSERT ... INTO "[[$BASE_URL/IdM/class.puml UsersFilters]]"
+        db -> db : INSERT ... INTO "[[$BASE_URL/plantuml/IdM/class.puml UsersFilters]]"
     idm <<-- db
 deactivate idm
 deactivate idm

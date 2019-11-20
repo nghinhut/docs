@@ -1,8 +1,8 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F225d1c25d8dd9d23033cf4ff7cccac23f934538b%5C%2Fplantuml%5C%2FIdM%5C%2Fuc04%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/225d1c25d8dd9d23033cf4ff7cccac23f934538b/plantuml/IdM/uc04.puml https://gitlab.com/nghinhut/docs/blob/225d1c25d8dd9d23033cf4ff7cccac23f934538b/plantuml/IdM/uc04.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F595df273fd04da4020ee4d7a2d2891641d82804a%5C%2Fplantuml%5C%2FIdM%5C%2Fuc04%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/595df273fd04da4020ee4d7a2d2891641d82804a/plantuml/IdM/uc04.puml https://gitlab.com/nghinhut/docs/blob/595df273fd04da4020ee4d7a2d2891641d82804a/plantuml/IdM/uc04.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title Delete User (UMA2 Protected)
 
@@ -17,7 +17,7 @@ participant "UMA2 Authorization Server" as as
 == Authorization ==
 activate client
 ref over client, idm, as
-    [[$BASE_URL/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
+    [[$BASE_URL/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
 end
 
 {start_d1} client ->> idm : request delete user 197 with access token (RPT)

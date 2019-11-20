@@ -5,12 +5,20 @@ stages:
   - deploy
   - release
 
+
+## PLANTUML
+### build on changes, then cache artifacts
 plantuml:
   stage: build
-  image: openjdk:8
+  image: ubuntu:18.04
+  cache:
+    key: "$CI_BUILD_REF_NAME"
+    paths:
+      - public
   script:
     - apt-get update -qq 2>&1 >/dev/null && apt-get install -qq -y --no-install-recommends zip jq git openjdk-8-jdk graphviz 2>&1 >/dev/null
     - ./scripts/plantuml-build.sh
+  interruptible: true
   artifacts:
     paths:
       - public
@@ -18,6 +26,17 @@ plantuml:
     changes:
       - "**/*.puml"
 
+### skip build plantuml if cache exist, otherwise run build
+plantuml-ensure-artifact-exists:
+  extends: plantuml
+  before_script:
+    - '[[ -d public ]] && exit 0'
+  only:
+  except:
+    changes:
+      - "**/*.puml"
+
+## GitLab Pages
 pages:
   stage: deploy
   image:
@@ -25,15 +44,25 @@ pages:
     entrypoint: [""]
   dependencies:
     - plantuml
+  cache:
+    key: "$CI_BUILD_REF_NAME"
+    paths:
+      - public
   script:
+    - '[[ ! -d "public/" ]] && exit 1' # If no public/ then exit error because the site need plantuml to be compiled before deploy
+    - apk add bash
+#    - '[[ ! -d "public/" ]] && (set +e && wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm -f artifacts.zip && set -e)'
     - export HUGO_BASEURL=$CI_PAGES_URL
-    - ./scripts/hugo-build.sh
+    - cat ./scripts/hugo-build.sh | bash
+  interruptible: true
   artifacts:
     paths:
       - public
   only:
     - master
 
+
+## RELEASE
 release:
   stage: release
   image: node:10-alpine
@@ -45,5 +74,4 @@ release:
     - npm install -g semantic-release @semantic-release/gitlab
     - semantic-release -r git@gitlab.com:nghinhut/docs.git
   only:
-    - master
     - schedules

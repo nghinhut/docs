@@ -1,20 +1,20 @@
 @startuml
 '-----START auto generated metadata please keep comment here to allow auto update-----
 '-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN prebuild.sh TO UPDATE-----
-header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F225d1c25d8dd9d23033cf4ff7cccac23f934538b%5C%2Fplantuml%5C%2FMSA%5C%2Fmsa-design-patterns%5C.puml%0A @nghinhut]]
-footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/225d1c25d8dd9d23033cf4ff7cccac23f934538b/plantuml/MSA/msa-design-patterns.puml https://gitlab.com/nghinhut/docs/blob/225d1c25d8dd9d23033cf4ff7cccac23f934538b/plantuml/MSA/msa-design-patterns.puml]]
+header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.com%5C%2Fplantuml%5C%2Fproxy%3Ffmt%3Dsvg%5C%26src%3Dhttps%5C%3A%5C%2F%5C%2Fgitlab%5C.com%5C%2Fnghinhut%5C%2Fdocs%5C%2Fraw%5C%2F595df273fd04da4020ee4d7a2d2891641d82804a%5C%2Fplantuml%5C%2FMSA%5C%2Fmsa-design-patterns%5C.puml%0A @nghinhut]]
+footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/595df273fd04da4020ee4d7a2d2891641d82804a/plantuml/MSA/msa-design-patterns.puml https://gitlab.com/nghinhut/docs/blob/595df273fd04da4020ee4d7a2d2891641d82804a/plantuml/MSA/msa-design-patterns.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title Design Patterns for Microservices
 
 !$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
 
-rectangle "Design Patterns for [[$BASE_URL/msa.puml Microservices]]" as DpfMSA #yellow
+rectangle "Design Patterns for [[$BASE_URL/plantuml/msa.puml Microservices]]" as DpfMSA #yellow
 
-rectangle "[[$BASE_URL/MSA/decomposition-patterns.puml Decomposition Patterns]]" as Decomposition #green
-rectangle "[[$BASE_URL/MSA/integration-patterns.puml Integration Patterns]]" as Integration #green
-rectangle "[[$BASE_URL/MSA/database-patterns.puml Database Patterns]]" as Database #green
-rectangle "[[$BASE_URL/MSA/observability-patterns.puml Observability Patterns]]" as Observability #green
-rectangle "[[$BASE_URL/MSA/cross-cutting-concern-patterns.puml Cross-Cutting Concern Patterns]]" as CrossCuttingConcern #green
+rectangle "[[$BASE_URL/plantuml/MSA/decomposition-patterns.puml Decomposition Patterns]]" as Decomposition #green
+rectangle "[[$BASE_URL/plantuml/MSA/integration-patterns.puml Integration Patterns]]" as Integration #green
+rectangle "[[$BASE_URL/plantuml/MSA/database-patterns.puml Database Patterns]]" as Database #green
+rectangle "[[$BASE_URL/plantuml/MSA/observability-patterns.puml Observability Patterns]]" as Observability #green
+rectangle "[[$BASE_URL/plantuml/MSA/cross-cutting-concern-patterns.puml Cross-Cutting Concern Patterns]]" as CrossCuttingConcern #green
 DpfMSA --- Decomposition
 DpfMSA --- Integration
 DpfMSA --- Database
