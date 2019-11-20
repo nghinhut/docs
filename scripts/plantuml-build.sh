@@ -5,7 +5,7 @@ shopt -s extglob
 OUTPUT_DIR=${1:-public}
 
 ## Pre-build
-./scripts/plantuml-header-patcher.sh
+#./scripts/plantuml-header-patcher.sh
 
 ### Prepare public/
 rm -rf "$OUTPUT_DIR"

@@ -24,7 +24,7 @@ disableKinds:
   - taxonomy
   - taxonomyTerm
 pygmentsCodeFences: true
-canonifyurls: true
+#canonifyurls: true
 outputs:
   section:
     - HTML
