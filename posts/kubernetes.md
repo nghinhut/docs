@@ -50,7 +50,136 @@ Dependencies:
 1. Load Balancer: [HAProxy][haproxy]
 2. in addition to run HAProxy reliably we need [keepalived][keepalived]
 
-{{< gist spf13 7896402 >}}
+```shell script
+    # /etc/haproxy/haproxy.cfg on load balancer 1 & load balancer 2
+    global
+       log /dev/log local0
+       log /dev/log local1 notice
+       chroot /var/lib/haproxy
+       stats timeout 30s
+       user haproxy
+       group haproxy
+       daemon
+    
+    defaults
+       log global
+       option tcplog
+       mode tcp
+       option httplog
+       option dontlognull
+       timeout connect 5s
+       timeout client 30s
+       timeout server 30s
+    
+    listen lets-encrypt-http-resolver
+        bind *:80
+        mode http
+        maxconn 8
+        stats uri /haproxy?stats
+        balance roundrobin
+        server k8s-nginx-ingress-01 192.168.0.111:80 check
+        server k8s-nginx-ingress-02 192.168.0.112:80 check
+        server k8s-nginx-ingress-07 192.168.0.107:80 check
+    
+    listen k8s-nginx-ingress
+        bind *:443
+        mode tcp
+        maxconn 128
+        balance roundrobin
+        option tcp-check
+        server k8s-nginx-ingress-01 192.168.0.111:443 check fall 3 rise 2 
+        server k8s-nginx-ingress-02 192.168.0.112:443 check fall 3 rise 2
+        server k8s-nginx-ingress-07 192.168.0.107:443 check fall 3 rise 2
+    
+    listen k8s-api-server
+        bind *:6443
+        mode tcp
+        maxconn 128
+        timeout connect 5s
+        timeout client 24h
+        timeout server 24h
+        server k8s-master-01 192.168.0.111:6443 check fall 3 rise 2
+        server k8s-master-02 192.168.0.112:6443 check fall 3 rise 2
+        server k8s-master-07 192.168.0.107:6443 check fall 3 rise 2
+```
+
+```shell script
+    # /etc/keepalived/keepalived.conf on load balancer 1
+    global_defs {
+      enable_script_security
+      script_user root root
+      router_id lb01                            
+    }
+    vrrp_script chk_haproxy {
+      script "/usr/bin/killall -0 haproxy"
+      interval 2
+      weight 2
+    }
+    vrrp_instance VI_1 {
+      virtual_router_id 51
+      advert_int 1
+      priority 100
+      state MASTER
+      interface virbr0
+      #track_interface {
+      #  p4p2
+      #  virbr0
+      #}
+      unicast_src_ip 192.168.0.101
+      unicast_peer {
+        192.168.0.102
+      }
+      virtual_ipaddress {
+        192.168.0.203 dev virbr0
+      }
+      authentication {
+         auth_type PASS
+         auth_pass 1111
+      }
+      track_script {
+        chk_haproxy
+      }
+    }
+```
+
+```shell script
+    # /etc/keepalived/keepalived.conf on load balancer 2
+    global_defs {
+      enable_script_security
+      script_user root root
+      router_id lb02
+    }
+    vrrp_script chk_haproxy {
+      script "/usr/bin/killall -0 haproxy"
+      interval 2
+      weight 2
+    }
+    vrrp_instance VI_1 {
+      virtual_router_id 51
+      advert_int 1
+      priority 99
+      state BACKUP
+      interface virbr0
+      #track_interface {
+      #  p4p2
+      #  virbr0
+      #}
+      unicast_src_ip 192.168.0.102
+      unicast_peer {
+        192.168.0.101
+      }
+      virtual_ipaddress {
+        192.168.0.203 dev virbr0
+      }
+      authentication {
+          auth_type PASS
+          auth_pass 1111
+      }
+      track_script {
+        chk_haproxy
+      }
+    }
+```
 
 [^k8s-docs]: https://kubernetes.io/docs/home/
 [^wiki:kubernetes]: https://en.wikipedia.org/wiki/Kubernetes
