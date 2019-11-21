@@ -47,8 +47,10 @@ There are alternatives to Kubernetes (such as Docker Swarm, Mesos, Nomad, etc) b
 
 #### Implementation
 Dependencies:
-1. Load Balancer: [HAProxy][haproxy]
-2. in addition to run HAProxy reliably we need [keepalived][keepalived]
+
+1. Load Balancer: [HAProxy](http://www.haproxy.org/)
+
+2. in addition to run HAProxy reliably we need [keepalived](https://www.keepalived.org/)
 
 ```shell script
     # /etc/haproxy/haproxy.cfg on load balancer 1 & load balancer 2
@@ -186,5 +188,3 @@ Dependencies:
 [^hackernoon]: https://hackernoon.com/kubernetes-what-the-hype-is-all-about-and-a-practical-tutorial-on-deploying-joget-for-low-code-47a8b02e47f5
 [^ha-kubeadm]: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/
 [^wiki:Network_topology]: https://en.wikipedia.org/wiki/Network_topology
-[^haproxy]: http://www.haproxy.org/
-[^keepalived]: https://www.keepalived.org/
