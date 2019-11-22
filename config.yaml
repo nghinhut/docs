@@ -15,7 +15,7 @@ module:
     - source: posts
       target: content/posts
     - source: assets
-      target: assets
+      target: static/assets
     - source: web/i18n
       target: i18n
     - source: web/archetypes
