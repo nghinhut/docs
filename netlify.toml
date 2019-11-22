@@ -3,7 +3,7 @@
 [build]
 publish = "public"
 #command = "hugo --gc --minify -b $URL"
-command = "wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm -f artifacts.zip && hugo --gc --minify -b $URL"
+command = "wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip && unzip artifacts.zip && hugo --gc --minify -b $URL"
 
 [context.production.environment]
 HUGO_VERSION = "0.59.1"
