@@ -20,6 +20,8 @@ module:
       target: i18n
     - source: web/archetypes
       target: archetypes
+    - source: _redirects
+      target: static/_redirects
 disableKinds:
   - taxonomy
   - taxonomyTerm
