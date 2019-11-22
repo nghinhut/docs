@@ -31,3 +31,17 @@ HUGO_VERSION = "0.59.1"
 
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Access-Control-Allow-Origin = "nghinhut.dev localhost"
+
+#[[redirects]]
+#  from = "/plantuml/*"
+#  to = "https://nghinhut.gitlab.io/docs/plantuml/:splat"
+#  status = 200
+#  force = true # COMMENT: ensure that we always redirect
+#  headers = {X-From = "Netlify", Access-Control-Allow-Origin = "nghinhut.dev localhost"}
