@@ -2,7 +2,8 @@
  
 [build]
 publish = "public"
-command = "apt-get install -y git openjdk-8-jdk graphviz 2>&1 >/dev/null && ./scripts/plantuml-build.sh && hugo --gc --minify -b $URL"
+#command = "hugo --gc --minify -b $URL"
+command = "wget https://gitlab.com/nghinhut/docs/-/jobs/artifacts/master/download?job=pages -O artifacts.zip; unzip artifacts.zip; rm -f artifacts.zip && hugo --gc --minify -b $URL"
 
 [context.production.environment]
 HUGO_VERSION = "0.59.1"
