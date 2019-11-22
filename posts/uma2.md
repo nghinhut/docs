@@ -13,7 +13,10 @@ draft: false
 <!--more-->
 
 ### UMA2 Grant Flow
+<!--
 {{< figure src="/plantuml/UMA2/uma2-grant.png" link="/plantuml/UMA2/uma2-grant.svg" target="_blank" alt="..." >}}
+-->
+![]({{<baseurl>}}/plantuml/UMA2/uma2-grant.png)
 
 #### References
 1. https://kantarainitiative.org/confluence/display/uma/Home
