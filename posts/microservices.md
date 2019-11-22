@@ -15,22 +15,27 @@ draft: false
 
 <br /><br />
 
-{{< figure src="/plantuml/MSA/msa.png" link="/plantuml/MSA/msa.svg" target="_blank" alt="..." >}}
+<!--
+{{< figure src="{{ .Page.Site.BaseURL }}/plantuml/MSA/msa.png" link="/plantuml/MSA/msa.svg" target="_blank" alt="..." >}}
+-->
+
+![]({{< baseurl >}}/plantuml/MSA/msa.svg)
+
 
 <br /><br /><br />
 ## Definition
 
 <br /><br />
 ## Goals
-![](/plantuml/MSA/msa-goals.png)
+![]({{<baseurl>}}/plantuml/MSA/msa-goals.svg)
 
 <br /><br />
 ## Architecture's Properties
-![](/plantuml/MSA/msa-properties.png)
+![]({{<baseurl>}}/plantuml/MSA/msa-properties.svg)
 
 <br /><br />
 ## Design Patterns for Microservices
-![](/plantuml/MSA/msa-design-patterns.png)
+![]({{<baseurl>}}/plantuml/MSA/msa-design-patterns.svg)
 
 <br /><br />
 ### References
