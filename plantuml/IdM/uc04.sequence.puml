@@ -6,8 +6,9 @@ footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/n
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title Delete User (UMA2 Protected)
 
-!include ../shared/functions.iuml
-!if (%not(%function_exists("$getBaseUrl")))
+!if (%file_exists("../shared/functions.iuml"))
+    !include ../shared/functions.iuml
+!else
     !include https://nghinhut.gitlab.io/docs/plantuml/shared/functions.iuml
 !endif
 

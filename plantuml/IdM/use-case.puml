@@ -5,8 +5,9 @@ header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.
 footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/8e9f9814d34554d4cd92a08dec3b80074ca83cf2/plantuml/IdM/use-case.puml https://gitlab.com/nghinhut/docs/blob/8e9f9814d34554d4cd92a08dec3b80074ca83cf2/plantuml/IdM/use-case.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
-!include ../shared/functions.iuml
-!if (%not(%function_exists("$getBaseUrl")))
+!if (%file_exists("../shared/functions.iuml"))
+    !include ../shared/functions.iuml
+!else
     !include https://nghinhut.gitlab.io/docs/plantuml/shared/functions.iuml
 !endif
 left to right direction
