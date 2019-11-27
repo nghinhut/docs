@@ -31,6 +31,7 @@ outputs:
   section:
     - HTML
     - JSON
+    - RSS
 enableGitInfo: true
 
 # Other configurations
