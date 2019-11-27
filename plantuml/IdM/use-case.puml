@@ -5,13 +5,10 @@ header [[https://www.nghinhut.dev?from=http%5C%3A%5C%2F%5C%2Fwww%5C.plantuml%5C.
 footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/nghinhut/docs/raw/8e9f9814d34554d4cd92a08dec3b80074ca83cf2/plantuml/IdM/use-case.puml https://gitlab.com/nghinhut/docs/blob/8e9f9814d34554d4cd92a08dec3b80074ca83cf2/plantuml/IdM/use-case.puml]]
 '-----END auto generated metadata please keep comment here to allow auto update-----
 
-!function $getBaseUrl($value = "https://gitlab.com/nghinhut/docs")
-    !$CI_PROJECT_URL = %getenv("CI_PROJECT_URL")
-    !if (%strlen($CI_PROJECT_URL) > 0)
-        !$value = $CI_PROJECT_URL
-    !endif
-    !return "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + $value + "/raw/master"
-!endfunction
+!include ../shared/functions.iuml
+!if (%not(%function_exists("$getBaseUrl")))
+    !include https://nghinhut.gitlab.io/docs/plantuml/shared/functions.iuml
+!endif
 left to right direction
 
 actor "Client" as client

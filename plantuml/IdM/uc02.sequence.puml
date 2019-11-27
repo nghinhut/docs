@@ -6,13 +6,10 @@ footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/n
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title List Users Stream
 
-!function $getBaseUrl($value = "https://gitlab.com/nghinhut/docs")
-    !$CI_PROJECT_URL = %getenv("CI_PROJECT_URL")
-    !if (%strlen($CI_PROJECT_URL) > 0)
-        !$value = $CI_PROJECT_URL
-    !endif
-    !return "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + $value + "/raw/master"
-!endfunction
+!include ../shared/functions.iuml
+!if (%not(%function_exists("$getBaseUrl")))
+    !include https://nghinhut.gitlab.io/docs/plantuml/shared/functions.iuml
+!endif
 
 participant "Client" as client
 participant "IdM Service" as idm
