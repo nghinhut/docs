@@ -6,7 +6,13 @@ footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/n
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title Delete User (UMA2 Protected)
 
-!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
+!function $getBaseUrl($value = "https://gitlab.com/nghinhut/docs")
+    !$CI_PROJECT_URL = %getenv("CI_PROJECT_URL")
+    !if (%strlen($CI_PROJECT_URL) > 0)
+        !$value = $CI_PROJECT_URL
+    !endif
+    !return "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + $value + "/raw/master"
+!endfunction
 
 participant "Client" as client
 participant "IdM Service" as idm
@@ -17,7 +23,7 @@ participant "UMA2 Authorization Server" as as
 == Authorization ==
 activate client
 ref over client, idm, as
-    [[$BASE_URL/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
+    [[$getBaseUrl()/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
 end
 
 {start_d1} client ->> idm : request delete user 197 with access token (RPT)

@@ -7,7 +7,13 @@ footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/n
 title Update User (UMA2 Protected)
 !pragma teoz true
 
-!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
+!function $getBaseUrl($value = "https://gitlab.com/nghinhut/docs")
+    !$CI_PROJECT_URL = %getenv("CI_PROJECT_URL")
+    !if (%strlen($CI_PROJECT_URL) > 0)
+        !$value = $CI_PROJECT_URL
+    !endif
+    !return "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + $value + "/raw/master"
+!endfunction
 
 participant "Client" as client
 participant "IdM Service" as idm
@@ -19,7 +25,7 @@ participant "Encryption Service" as es
 == Authorization ==
 activate client
 ref over client, idm, as
-    [[$BASE_URL/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
+    [[$getBaseUrl()/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
 end
 
 {start_d1} client ->> idm : request update user 197 with access token (RPT)
@@ -46,14 +52,14 @@ idm -> idm : policyEnforce()
 
 == Updating ==
 ref over idm
-    [[$BASE_URL/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
+    [[$getBaseUrl()/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
 end
 
 loop for each attribute in user's attributes
     idm -> idm : attributeChangesDetection()    // compare HMACs
     opt attribute is changes
         ref over idm, es
-            Encrypt user's attribute by [[$BASE_URL/plantuml/encryption.function.puml Encryption($attribute)]]
+            Encrypt user's attribute by [[$getBaseUrl()/plantuml/encryption.function.puml Encryption($attribute)]]
         end
 
         idm -> idm : user.setAttribute($attribute.key, $attribute.value //<encrypted>//)
@@ -76,7 +82,7 @@ idm -> idm : createBlindIndex()
         idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
     end
     idm -> db : updateBlindIndex()
-        db -> db : INSERT ... INTO "[[$BASE_URL/plantuml/class.puml UsersFilters]]"
+        db -> db : INSERT ... INTO "[[$getBaseUrl()/plantuml/class.puml UsersFilters]]"
     idm <<-- db
 deactivate idm
 

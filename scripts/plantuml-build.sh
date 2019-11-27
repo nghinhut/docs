@@ -3,7 +3,6 @@
 shopt -s extglob
 
 OUTPUT_DIR=${1:-public}
-export CI_PROJECT_URL=${CI_PROJECT_URL:-https://gitlab.com/nghinhut/docs}
 
 ## Pre-build
 #./scripts/plantuml-header-patcher.sh

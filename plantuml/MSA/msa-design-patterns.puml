@@ -6,15 +6,21 @@ footer [[http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://gitlab.com/n
 '-----END auto generated metadata please keep comment here to allow auto update-----
 title Design Patterns for Microservices
 
-!$BASE_URL = "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + %getenv("CI_PROJECT_URL") + "/raw/master"
+!function $getBaseUrl($value = "https://gitlab.com/nghinhut/docs")
+    !$CI_PROJECT_URL = %getenv("CI_PROJECT_URL")
+    !if (%strlen($CI_PROJECT_URL) > 0)
+        !$value = $CI_PROJECT_URL
+    !endif
+    !return "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + $value + "/raw/master"
+!endfunction
 
-rectangle "Design Patterns for [[$BASE_URL/plantuml/msa.puml Microservices]]" as DpfMSA #yellow
+rectangle "Design Patterns for [[$getBaseUrl()/plantuml/msa.puml Microservices]]" as DpfMSA #yellow
 
-rectangle "[[$BASE_URL/plantuml/MSA/decomposition-patterns.puml Decomposition Patterns]]" as Decomposition #green
-rectangle "[[$BASE_URL/plantuml/MSA/integration-patterns.puml Integration Patterns]]" as Integration #green
-rectangle "[[$BASE_URL/plantuml/MSA/database-patterns.puml Database Patterns]]" as Database #green
-rectangle "[[$BASE_URL/plantuml/MSA/observability-patterns.puml Observability Patterns]]" as Observability #green
-rectangle "[[$BASE_URL/plantuml/MSA/cross-cutting-concern-patterns.puml Cross-Cutting Concern Patterns]]" as CrossCuttingConcern #green
+rectangle "[[$getBaseUrl()/plantuml/MSA/decomposition-patterns.puml Decomposition Patterns]]" as Decomposition #green
+rectangle "[[$getBaseUrl()/plantuml/MSA/integration-patterns.puml Integration Patterns]]" as Integration #green
+rectangle "[[$getBaseUrl()/plantuml/MSA/database-patterns.puml Database Patterns]]" as Database #green
+rectangle "[[$getBaseUrl()/plantuml/MSA/observability-patterns.puml Observability Patterns]]" as Observability #green
+rectangle "[[$getBaseUrl()/plantuml/MSA/cross-cutting-concern-patterns.puml Cross-Cutting Concern Patterns]]" as CrossCuttingConcern #green
 DpfMSA --- Decomposition
 DpfMSA --- Integration
 DpfMSA --- Database
