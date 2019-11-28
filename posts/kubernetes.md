@@ -9,7 +9,7 @@ tags: "kubernetes,devops"
 draft: false
 ---
 
-**Kubernetes** is an open source container orchestration engine for automating deployment, scaling, and management of containerized applications.[^k8s-docs]
+**Kubernetes** is an open source container orchestration engine for automating deployment, scaling, and management of containerized applications.
 
 <!--more-->
 
