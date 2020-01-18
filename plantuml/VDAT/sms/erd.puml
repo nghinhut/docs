@@ -1,0 +1,18 @@
+@startuml
+
+entity user as "User" {
+
+}
+
+entity sim as "Sim" {
+
+}
+
+entity hook as "Web Hook" {
+
+}
+
+user ||..o{ sim
+
+
+@enduml
