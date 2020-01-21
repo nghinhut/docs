@@ -13,7 +13,7 @@ mkdir -p "$OUTPUT_DIR"
 cp -r !(public|*.zip|posts|assets|scripts|web|protos|config.yaml) "$OUTPUT_DIR"
 
 ## Build
-PLANTUML=scripts/plantuml.1.2019.11.jar
+PLANTUML=scripts/plantuml.1.2020.0.jar
 SOURCES_FILES=$(find "$OUTPUT_DIR" -iname '*.puml' | grep -v static)
 for file in ${SOURCES_FILES}; do
     printf "Build %s... " "$file"

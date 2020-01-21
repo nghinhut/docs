@@ -9,7 +9,7 @@ title Microservices Architecture
 !if (%file_exists("../shared/functions.iuml"))
     !include ../shared/functions.iuml
 !else
-    !include https://nghinhut.gitlab.io/docs/plantuml/shared/functions.iuml
+    !include https://gitlab.com/nghinhut/docs/raw/master/plantuml/shared/functions.iuml
 !endif
 rectangle "<b>Microservices Architecture" as msa #green
 
