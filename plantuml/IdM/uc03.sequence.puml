@@ -15,7 +15,8 @@ title Update User (UMA2 Protected)
 
 participant "Client" as client
 participant "IdM Service" as idm
-participant "IdM Database" as db
+participant "Shared Cache\n(optional)" as cache
+participant "Database" as db
 participant "UMA2 Authorization Server" as as
 participant "Encryption Service" as es
 
@@ -23,7 +24,7 @@ participant "Encryption Service" as es
 == Authorization ==
 activate client
 ref over client, idm, as
-    [[$getBaseUrl()/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
+    [[$getBaseUrl()/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'update-user' ]
 end
 
 {start_d1} client ->> idm : request update user 197 with access token (RPT)
@@ -53,29 +54,55 @@ ref over idm
     [[$getBaseUrl()/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
 end
 
-loop for each attribute in user's attributes
-    idm -> idm : attributeChangesDetection()    // compare HMACs
-    opt attribute is changes
-        ref over idm, es
-            Encrypt user's attribute by [[$getBaseUrl()/plantuml/encryption.function.puml Encryption($attribute)]]
-        end
-
-        idm -> idm : user.setAttribute($attribute.key, $attribute.value //<encrypted>//)
-    end
+break updated_at (from db) != updated_at (from request)
+    client <-- idm : Error conflict (HTTP Status 409 Conflict) -> Time conflict
 end
 
-idm <<-- es
-deactivate es
+loop for each not null attribute in user's attributes (request)
+    note right of idm
+        Assume all not null fields received are those that need to change
+        The change detection SHOULD be perform on client side to avoid adding costly change detection mechanics,
+        or perform unnecessary encryption on server side,
+        while also reducing network load
+    end note
 
-idm -> db : save()
+    ref over idm, es
+        Encrypt user's attribute by [[$getBaseUrl()/plantuml/encryption.function.puml Encryption($attribute)]]
+    end
+
+    idm -> idm : user.setAttribute($attribute.key, $attribute.value //<encrypted>//)
+end
+
+
+'idm <<-- es
+'deactivate es
+
+idm -> db : save() (perform OCC)
 idm <-- db : result
 
-{end_d1} client <<-- idm : return success response (empty body)
+break the result is empty (unexpected user change)
+    client <- idm : HTTP Status 409 Conflict -> User change conflict
+end
+
+{end_d1} client <<-- idm : return success response (empty body) (HTTP Status 204)
 deactivate client
 
+== Post-Update Tasks ==
+idm -> idm : prepare shared cache for later usage
+activate idm
+    idm -> cache : deleteSharedCache()
+    note right
+        it's safer to delete shared cache first
+        avoid conflict if adding failed
+    end note
+    ref over idm, cache
+        Adding data to Shared Cache
+    end
+deactivate idm
 
-== Update Blind Index ==
+
 idm -> idm : createBlindIndex()
+activate idm
     loop for each attribute in ['username', 'email', 'first_name', 'last_name']
         idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
     end
@@ -84,7 +111,9 @@ idm -> idm : createBlindIndex()
     idm <<-- db
 deactivate idm
 
+deactivate idm
+
 
 'Duration Constrains
-{start_d1} <-> {end_d1} : <5s
+{start_d1} <-> {end_d1} : <1s (the shorter the better)
 @enduml
