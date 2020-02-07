@@ -23,19 +23,19 @@ plantuml:
   artifacts:
     paths:
       - public
-  only:
-    changes:
-      - "**/*.puml"
+#  only:
+#    changes:
+#      - "**/*.puml"
 
 ### skip build plantuml if cache exist, otherwise run build
-plantuml-ensure-artifact-exists:
-  extends: plantuml
-  before_script:
-    - '[[ -d public ]] && exit 0'
-  only:
-  except:
-    changes:
-      - "**/*.puml"
+#plantuml-ensure-artifact-exists:
+#  extends: plantuml
+#  before_script:
+#    - '[[ -d public ]] && exit 0'
+#  only:
+#  except:
+#    changes:
+#      - "**/*.puml"
 
 ## GitLab Pages
 pages:
