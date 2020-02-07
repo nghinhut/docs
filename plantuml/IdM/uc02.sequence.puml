@@ -1,5 +1,5 @@
 @startuml
-title List Users Stream
+title Query Users
 
 !if (%file_exists("../shared/functions.iuml"))
     !include ../shared/functions.iuml
@@ -9,7 +9,8 @@ title List Users Stream
 
 participant "Client" as client
 participant "IdM Service" as idm
-participant "IdM Database" as db
+participant "Shared Cache\n(optional)" as cache
+participant "Database" as db
 participant "UMA2 Authorization Server" as as
 participant "Encryption Service" as es
 
@@ -17,14 +18,20 @@ ref over client, idm, as
     [[$getBaseUrl()/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'list-users' ]
 end
 
-client ->> idm : list users
+client ->> idm : list users with limit & offset
 activate idm
-    ref over idm
-        [[$getBaseUrl()/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with empty query
-    end
 
-    loop for each user in users <//encrypted//>
-        idm -> idm : userMsg = new idmGrpc.User()     // proto message
+alt query by UUID (unprotected field) (cache first)
+    idm -> cache : getCachedUserByUUID()
+    activate cache
+        idm <-- cache : cached user
+    deactivate cache
+
+    opt no cached user
+        ref over idm, db
+            [[$getBaseUrl()/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] by UUID
+        end
+
         loop for each attribute in user's attributes
             ref over idm, es
                 Decrypt user's attribute by [[$getBaseUrl()/plantuml/IdM/decryption.function.puml{} Decryption(attribute)]]
@@ -32,9 +39,29 @@ activate idm
 
             idm -> idm : userMsg.set(attribute //<decrypted>//, value)
         end
-
-        client <<-- idm : write userMsg
     end
+else search users (include protected fields) (Database first)
+    ref over idm, db
+        [[$getBaseUrl()/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] from Database
+    end
+
+    loop for each user in users <//encrypted//>
+        ref over idm, cache
+            getCachedUser()
+        end
+        opt if not cached
+            loop for each attribute in user's attributes
+                ref over idm, es
+                    Decrypt user's attribute by [[$getBaseUrl()/plantuml/IdM/decryption.function.puml{} Decryption(attribute)]]
+                end
+
+                idm -> idm : userMsg.set(attribute //<decrypted>//, value)
+            end
+        end
+    end
+end
+
+client <<-- idm : send users
 
 deactivate idm
 @enduml
