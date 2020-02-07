@@ -50,13 +50,13 @@ idm -> idm : policyEnforce()
 
 
 == Updating ==
-ref over idm
-    [[$getBaseUrl()/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
-end
-
-break updated_at (from db) != updated_at (from request)
-    client <-- idm : Error conflict (HTTP Status 409 Conflict) -> Time conflict
-end
+' Disable version(updated_at) check to reducing execute time (expect client to send valid request)
+'ref over idm
+'    [[$getBaseUrl()/plantuml/IdM/query-encrypted-users.function.puml Query Encrypted Users]] with id = 197
+'end
+'break updated_at (from db) != updated_at (from request)
+'    client <-- idm : Error conflict (HTTP Status 409 Conflict) -> Time conflict
+'end
 
 loop for each not null attribute in user's attributes (request)
     note right of idm
@@ -77,7 +77,14 @@ end
 'idm <<-- es
 'deactivate es
 
-idm -> db : save() (perform OCC)
+idm -> db : save()
+note right of db
+    UPDATE users
+        SET ...
+    WHERE userId = $1 AND updated_at = $2
+
+    *note the updated_at acting like a version field (OCC)
+end note
 idm <-- db : result
 
 break the result is empty (unexpected user change)
@@ -90,11 +97,11 @@ deactivate client
 == Post-Update Tasks ==
 idm -> idm : prepare shared cache for later usage
 activate idm
-    idm -> cache : deleteSharedCache()
-    note right
-        it's safer to delete shared cache first
-        avoid conflict if adding failed
-    end note
+'    idm -> cache : deleteSharedCache()
+'    note right
+'        it's safer to delete shared cache first
+'        avoid conflict if adding failed
+'    end note
     ref over idm, cache
         Adding data to Shared Cache
     end
