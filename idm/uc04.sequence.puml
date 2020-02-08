@@ -1,0 +1,60 @@
+@startuml
+title Delete User (UMA2 Protected)
+
+!if (%file_exists("../shared/functions.iuml"))
+    !include ../shared/functions.iuml
+!else
+    !include https://gitlab.com/nghinhut/docs/raw/master/plantuml/shared/functions.iuml
+!endif
+
+participant "Client" as client
+participant "IdM Service" as idm
+participant "IdM Database" as db
+participant "UMA2 Authorization Server" as as
+
+
+== Authorization ==
+activate client
+ref over client, idm, as
+    [[$getBaseUrl()/plantuml/IdM/create-permission-ticket.function.puml{} Create Permission Ticket]] with resources scopes = [ 'delete-user' ]
+end
+
+{start_d1} client ->> idm : request delete user 197 with access token (RPT)
+note left
+    DELETE /users/197
+end note
+
+activate idm
+idm -> idm : tokenIntrospect()
+activate idm
+    opt for additional validation\n(offer better security but increases request duration
+        ref over idm, as
+            Introspect token with Authz Server
+        end
+    end
+deactivate idm
+
+idm -> idm : policyEnforce()
+
+
+== Deleting ==
+alt SOFT_DELETE_ENABLED = true
+    idm ->> db : UPDATE Users SET deletedAt = now() WHERE id = 197;
+else SOFT_DELETE_ENABLED = false
+    idm ->> db : DELETE Users WHERE id = 197
+end
+idm <<-- db : result
+
+client <<-- idm : response (empty body)
+deactivate client
+
+
+== Delete Blind Index ==
+opt SOFT_DELETE_ENABLED && DELETE_BIND_INDEX_ENABLED
+    idm -> db : DELETE * FROM UserFilter WHERE UserId = 197
+    idm <-- db : result
+end
+
+deactivate idm
+@enduml
+

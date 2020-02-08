@@ -1,0 +1,32 @@
+@startuml
+title IdM Classes
+
+class "User" as user {
+    -- private --
+    - id: string
+    - createdAt: timestamp
+    - updatedAt: timestamp
+    -- encrypted --
+    - username: string
+    - email: string
+    - firstName: string
+    - lastName: string
+    - attributes: {key: string, value: Object}[]
+}
+
+class "UserFilter" as user_filter {
+    -- private --
+    - id: number
+    - UserId: string
+    - update_at: timestamp
+    -- encrypted --
+    - label: string
+    - value: string
+
+}
+
+user -* user_filter : hasMany
+
+@enduml
+
+

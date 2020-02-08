@@ -28,13 +28,19 @@ I will update the jsonnet file to generate document instead actual change the do
 There will be a single .jsonnet file for every project in this repository.
 
 ### Updating process
-1. Modify .jsonnet file
-2. Build
+1. Modify document file(s)
+1. Git commit & push
+1. Build & Deployment (CI/CD)
+    1. Data Binding
 
-    Example build idm.jsonnet
-    ```
-    ./scripts/jsonnet.sh idm/idm.jsonnet -S -m idm
-    ```
-3. Git commit & push
-
-
+        Example build **IdM** documents
+        ```
+        ./scripts/jsonnet.sh idm/idm.jsonnet -S -m out/idm
+        ```
+        Jsonnet will binding all needed variables into document files
+    2. PlantUML build
+        
+        ```
+        ./scripts/plantuml-build.sh
+        ```      
+    
