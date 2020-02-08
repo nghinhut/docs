@@ -5,7 +5,7 @@ BEGIN_HEADER="'-----START auto generated metadata please keep comment here to al
 HEADER_NOTIFY="'-----DON'T EDIT THIS SECTION, INSTEAD RE-RUN plantuml-header-patcher.sh TO UPDATE-----"
 END_HEADER="'-----END auto generated metadata please keep comment here to allow auto update-----"
 
-EMPTY_HEADER_CONTENT=$EMPTY_HEADER_CONTENT
+EMPTY_HEADER=$EMPTY_HEADER
 
 appendHeaderToFile() {
   file=$1
@@ -27,9 +27,11 @@ appendHeaderToFile() {
 #    sed -i "s/@startuml/@startuml\n$BEGIN_HEADER\n$END_HEADER\n/g" "$file"
 #  fi
 
-  if [[ $EMPTY_HEADER_CONTENT ]]; then
+  if [[ $EMPTY_HEADER ]]; then
 #    sed -i "s/@startuml/@startuml\n$BEGIN_HEADER\n$HEADER_NOTIFY\n$END_HEADER/g" "$file"
     echo "leave header empty"
+    content=$(cat plantuml/shared/functions.iuml)
+    sed -i "s/@startuml/@startuml\n$BEGIN_HEADER\n$HEADER_NOTIFY\n$content\n$END_HEADER/g" "$file"
   else
     filepath=$(echo "$file" | cut -d. -f2 | sed -e "s/\//\\\\\//g")
     diagramURL="https\:\/\/gitlab\.com\/nghinhut\/docs\/blob\/$(git rev-parse HEAD)$filepath\.puml"

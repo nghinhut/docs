@@ -1,4 +1,4 @@
-# Nghi L. M. Nhựt's Documents
+# My Central Document Repository
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/acaf92bf-c37e-453f-b059-24d0f8e3c18f/deploy-status)](https://app.netlify.com/sites/nlmn-docs/deploys)
@@ -19,5 +19,22 @@
 <!-- Image Links -->
 [www.plantuml.com]: http://www.plantuml.com/plantuml/proxy?src=
 [plantuml.nghinhut.dev]: https://plantuml.nghinhut.dev/proxy?src=
+
+# Document Development
+
+In order to keeping persistence of constraints across multiple files in the same project,
+I will update the jsonnet file to generate document instead actual change the document files.
+
+There will be a single .jsonnet file for every project in this repository.
+
+### Updating process
+1. Modify .jsonnet file
+2. Build
+
+    Example build idm.jsonnet
+    ```
+    ./scripts/jsonnet.sh idm/idm.jsonnet -S -m idm
+    ```
+3. Git commit & push
 
 

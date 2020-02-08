@@ -1,0 +1,80 @@
+@startuml
+
+title Create A New User (UMA2 Protected)
+!pragma teoz true
+!$BASE_URL = "123"
+
+participant "Client" as client
+participant "IdM Service" as idm
+participant "IdM Database" as db
+participant "UMA2 Authorization Server" as as
+participant "Encryption Service" as es
+
+activate client
+client ->> idm : client request permission ticket
+activate idm
+    idm -> idm : createPermissionTicket()
+    activate idm
+        opt invalid or expired access token (PAT)
+            ref over idm, as
+                OAuth2 Client Credentials Grant
+            end
+        end
+        idm ->> as : create permission ticket with resource scopes: [ 'create-user' ]
+        activate as
+        deactivate as
+        idm <<-- as
+    deactivate idm
+
+client <<-- idm : 200 response { as_uri: ..., ticket: ... }
+deactivate idm
+
+{start_d1} client ->> idm : request create new user with access token (RPT)
+activate idm
+
+
+idm -> idm : tokenIntrospect()
+activate idm
+    opt for additional validation\n(offer better security but increases request duration
+        ref over idm, as
+            Introspect token with Authz Server
+        end
+    end
+deactivate idm
+
+
+idm -> idm : policyEnforce()
+activate idm
+deactivate idm
+
+
+loop for each attribute in user's attributes
+    ref over idm, es
+        Encrypt user's attribute by [[$BASE_URL/plantuml/IdM/encryption.function.puml Encryption($attribute)]]
+    end
+end
+
+
+idm -> db : save()
+    db -> db : INSERT ... INTO "[[$getBaseUrl()/plantuml/IdM/class.puml Users]]";
+idm <-- db : result
+
+{end_d1} client <<-- idm : return success response (empty body)
+deactivate client
+
+== Create Blind Indexing ==
+idm -> idm : createBlindIndex()
+activate idm
+    loop for each attribute in ['username', 'email', 'first_name', 'last_name']
+        idm -> idm : hash_hmac('sha256', $attribute, $masterKey)
+    end
+    idm -> db : updateBlindIndex()
+        db -> db : INSERT ... INTO "[[$getBaseUrl()/plantuml/IdM/class.puml UsersFilters]]"
+    idm <<-- db
+deactivate idm
+deactivate idm
+
+'Duration Constrains
+{start_d1} <-> {end_d1} : <5s
+@enduml
+
