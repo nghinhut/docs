@@ -4,10 +4,10 @@ title Identity Management Service
 !if (%file_exists("../shared/functions.iuml"))
     !include ../shared/functions.iuml
 !else
-    !include https://nghinhut.gitlab.io/docs/plantuml/shared/functions.iuml
+    !include https://gitlab.com/nghinhut/docs/raw/master/plantuml/shared/functions.iuml
 !endif
 
-rectangle "Identity Management" as idm #green
+rectangle "Identity Management Service" as idm #green
 rectangle "Security Considerations" as security_considerations #yellow
 rectangle "Privacy Considerations" as privacy_considerations #yellow
 rectangle "Goals" as goals #yellow
@@ -15,15 +15,28 @@ rectangle "[[$getBaseUrl()/plantuml/IdM/use-case.puml Use cases]]" as use_cases 
 rectangle "Requirements" as requirements #yellow
 rectangle "Functional" as functional_requirements
 rectangle "Non-Functional" as non_functional_requirements
+rectangle "Cost Model" as cost_model
 
 goals -- idm
 use_cases -- idm
 idm -- requirements
 security_considerations - idm
 idm - privacy_considerations
+idm -- cost_model
 
 requirements -- functional_requirements
 requirements -- non_functional_requirements
+
+note left of cost_model
+    Operation cost:
+        - deployment
+        - network
+        - storage
+        - compute
+    Development cost:
+        - error fix
+        - develop new feature
+end note
 
 note left of functional_requirements
     Enable ability to store, access and manage users between multiple services, applications

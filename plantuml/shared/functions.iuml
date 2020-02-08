@@ -3,5 +3,8 @@
     !if (%strlen($CI_PROJECT_URL) > 0)
         !$value = $CI_PROJECT_URL
     !endif
-    !return "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + $value + "/raw/master"
+
+'    !return "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + $value + "/raw/master"
+
+    !return $value
 !endfunction
