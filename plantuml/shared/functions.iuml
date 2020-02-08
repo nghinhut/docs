@@ -6,5 +6,5 @@
 
 '    !return "http://www.plantuml.com/plantuml/proxy?fmt=svg&src=" + $value + "/raw/master"
 
-    !return $value
+    !return "" + $value
 !endfunction
