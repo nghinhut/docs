@@ -1,8 +1,28 @@
 {
     local BASE_URL = 'asdfasf',
     local OPERATION_TIME_LIMIT = '5s',
+    local concernsOfASingleService = import "concerns-of-a-single-service.jsonnet",
+    local SERVICE_NAME = 'Identity Management Service',
+    SERVICE_NAME: 'Identity Management Service',
 
-    'README.md': std.strReplace(importstr "README.md", "$OPERATION_TIME_LIMIT", OPERATION_TIME_LIMIT),
+    'Service name': SERVICE_NAME,
+
+
+    'content':: std.strReplace(importstr "README.md", "$OPERATION_TIME_LIMIT", OPERATION_TIME_LIMIT),
+    'concernsOfASingleService':: "Name | Value | Description\n---|---|---\n" + std.join("\n",
+    [ concern.name + " | "
+    + (if std.objectHas(self, concern.name) then self[concern.name] else "")
+    + " | " + concern.description
+    for concern in concernsOfASingleService ]),
+
+    'README.md': |||
+         %(content)s
+         %(SERVICE_NAME)s
+         $[SERVICE_NAME]s
+
+         ## Concerns of Service
+         %(concernsOfASingleService)s
+    ||| % self,
     'uc01.sequence.puml': importstr "uc01.sequence.puml",
     'uc02.sequence.puml': importstr "uc02.sequence.puml",
     'uc03.sequence.puml': importstr "uc03.sequence.puml",

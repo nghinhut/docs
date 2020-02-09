@@ -1,9 +1,20 @@
 image: alpine:latest
 
 stages:
-  - build
+  - jsonnet
+  - plantuml
   - deploy
   - release
+
+# Jsonnet
+jsonnet:
+  stage: jsonnet
+  image:
+    name: bitnami/jsonnet:latest
+    entrypoint: ["/bin/bash"]
+  script:
+    - SVC=idm jsonnet -J templates $SVC/$SVC.jsonnet -m $SVC
+
 
 
 ## PLANTUML

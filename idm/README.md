@@ -6,3 +6,5 @@ other considerations:
 
 All service function must not excced this limit: $OPERATION_TIME_LIMIT
 
+%(SERVICE_NAME)  
+$[SERVICE_NAME]  
