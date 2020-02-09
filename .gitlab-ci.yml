@@ -13,7 +13,7 @@ jsonnet:
     name: bitnami/jsonnet:latest
     entrypoint: [""]
   script:
-    - SVC=idm jsonnet -J templates $SVC/$SVC.jsonnet -m $SVC
+    - SVC=idm jsonnet -J templates $SVC/$SVC.jsonnet -S -m $SVC
 
 
 ## PLANTUML
