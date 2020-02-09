@@ -14,13 +14,17 @@ jsonnet:
     entrypoint: [""]
   script:
     - SVC=idm && jsonnet -J templates $SVC/$SVC.jsonnet -S -m $SVC
-
+  artifacts:
+    paths:
+      - ./
 
 ## PLANTUML
 ### build on changes, then cache artifacts
 plantuml:
   stage: plantuml
   image: ubuntu:18.04
+  dependencies:
+    - jsonnet
   cache:
     key: "$CI_BUILD_REF_NAME"
     paths:
