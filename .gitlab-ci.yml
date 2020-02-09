@@ -17,6 +17,7 @@ jsonnet:
   artifacts:
     paths:
       - ./
+  interruptible: true
 
 ## PLANTUML
 ### build on changes, then cache artifacts

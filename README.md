@@ -1,4 +1,4 @@
-# My Central Document Repository
+# My Central Document Repository (Deprecated)
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/acaf92bf-c37e-453f-b059-24d0f8e3c18f/deploy-status)](https://app.netlify.com/sites/nlmn-docs/deploys)

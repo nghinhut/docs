@@ -3,11 +3,8 @@
     local OPERATION_TIME_LIMIT = '5s',
     local concernsOfASingleService = import "concerns-of-a-single-service.jsonnet",
     local SERVICE_NAME = 'Identity Management Service',
-    SERVICE_NAME: 'Identity Management Service',
-
-    'Service name': SERVICE_NAME,
-
-
+    SERVICE_NAME:: 'Identity Management Service',
+    'Service name':: SERVICE_NAME,
     'content':: std.strReplace(importstr "README.md", "$OPERATION_TIME_LIMIT", OPERATION_TIME_LIMIT),
     'concernsOfASingleService':: "Name | Value | Description\n---|---|---\n" + std.join("\n",
     [ concern.name + " | "
