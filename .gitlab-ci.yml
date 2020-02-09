@@ -11,10 +11,9 @@ jsonnet:
   stage: jsonnet
   image:
     name: bitnami/jsonnet:latest
-    entrypoint: ["/bin/bash"]
+    entrypoint: [""]
   script:
     - SVC=idm jsonnet -J templates $SVC/$SVC.jsonnet -m $SVC
-
 
 
 ## PLANTUML
